@@ -81,7 +81,9 @@ app.use(function(req, res, next) {
 // ---------------------- Routes 
 // app.use('/users', require('./controllers/users.js'));
 app.use('/users', require('./controllers/usersController'));
-// app.use('/', require('./controllers/index'));
+app.use('/', require('./controllers/index'));
+app.use('/movies', require('./controllers/moviesController'));
+app.use('/playlists', require('./controllers/playlistsController'));
 
 app.get('/', (req, res) => {
   res.render('index');
