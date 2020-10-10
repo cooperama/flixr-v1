@@ -5,6 +5,7 @@ const router = express.Router();
 const db = require('../models');
 
 
+
 // ----------------- GET index
 
 router.get('/', (req, res) => {
@@ -22,7 +23,9 @@ router.get('/', (req, res) => {
 
 // ----------------- GET new
 
-
+router.get('/new', (req, res) => {
+  res.render('/playlists/new');
+});
 
 
 // ----------------- POST create
