@@ -60,9 +60,35 @@ router.get('/:playlistId', (req, res) => {
 
 // ----------------- GET edit
 
+router.get('/:playlistId/edit', (req, res) => {
+  db.Playlist.findById(req.params.playlistsId)
+    .populate('movies')
+    .exec((err, foundPlaylist) => {
+      if (err) return console.log(err);
+
+      const context = {
+        playlist: foundPlaylist,
+      }
+
+      res.render('playists/edit', context);
+    })
+})
+
+
 // ----------------- PUT update
 
+router.put('/:playlistId', (req, res) => {
+  db.Playlist.findByIdAndUpdate(
+    req.params.playlistsId,
+    req.body,
+    {new: true},
+    (err, updatedPlaylist) => {
+      if (err) return console.log(err);
 
+      res.redirect(`/playlists/${updatedPlaylist._id}`);
+    }
+  )
+})
 
 
 // ----------------- DELETE delete
