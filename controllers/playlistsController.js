@@ -27,12 +27,25 @@ router.get('/new', (req, res) => {
 
 // ----------------- POST create
 
+router.post('/', (req, res) => {
+  db.Playlist.create(req.body, (err, newPlaylist) => {
+    if (err) return console.log(err);
 
+    db.User.findById(req.body.user, (err, foundUser) => {
+      if (err) return console.log(err);
+
+      foundUser.playlists.push(newPlaylist._id);
+      res.redirect(`/playlists/${newPlaylist._id}`);
+    })
+  })
+})
 
 
 // ----------------- GET show
 
+router.get('/:playlistId', (req, res) => {
 
+})
 
 
 // ----------------- GET edit
