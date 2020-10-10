@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+
+
+<% playlists.forEach(playlist => { %>
+<div class="playlist-container">
+
+  <h2 class="playlist-title"><%= playlist.title %></h2>
+
+  <% if (playlist.description) { %> 
+  <p class="playlist-description"><%= playlist.description %></p>
+  <% } %> 
+
+</div>
+<% }) %>
+
+
+
+
+
+<%- include('../partials/footer.ejs') %>
