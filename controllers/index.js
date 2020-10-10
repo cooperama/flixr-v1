@@ -12,4 +12,10 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
   })
 );
 
-module.exports = router;
+
+module.exports = {
+  router,
+  users: require('./usersController'),
+  movies: require('./moviesController'),
+  playlists: require('./playlistsController'),
+}

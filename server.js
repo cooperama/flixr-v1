@@ -6,7 +6,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
-const { mongoose } = require('mongoose');
+const mongoose = require('mongoose');
+// const { mongoose } = require('mongoose');
 
 const app = express();
 
@@ -78,12 +79,18 @@ app.use(function(req, res, next) {
 
 
 // ---------------------- Routes 
-app.use('/users', require('./controllers/users.js'));
+// app.use('/users', require('./controllers/users.js'));
+app.use('/users', require('./controllers/usersController'));
 app.use('/', require('./controllers/index.js'));
 
 app.get('/', (req, res) => {
-  res.send('<h1>Movie DB</h1>')
-})
+  res.render('index');
+});
+
+
+app.get('*', (req, res) => {
+  res.render('404');
+});
 
 // ---------------------- Listener
 app.listen(PORT, () => {
