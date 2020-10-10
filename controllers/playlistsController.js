@@ -44,14 +44,21 @@ router.post('/', (req, res) => {
 // ----------------- GET show
 
 router.get('/:playlistId', (req, res) => {
+  db.Playlist.findById(req.params.playlistsId)
+    .populate('movies')
+    .exec((err, foundPlaylist) => {
+      if (err) return console.log(err);
 
-})
+      const context = {
+        playlist: foundPlaylist
+      }
+
+      res.render('playlists/show', context);
+    })
+});
 
 
 // ----------------- GET edit
-
-
-
 
 // ----------------- PUT update
 
