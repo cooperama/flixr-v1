@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
       playlists: allPlaylists,
     };
 
-    res.render('/playlists/index');
+    res.render('/playlists/index', context);
   })
 });
 
