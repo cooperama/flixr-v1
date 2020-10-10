@@ -88,11 +88,22 @@ router.put('/:playlistId', (req, res) => {
       res.redirect(`/playlists/${updatedPlaylist._id}`);
     }
   )
-})
+});
 
 
 // ----------------- DELETE delete
 
+router.delete('/:playlistId', (req, res) => {
+  db.Playlist.findByIdAndDelete(req.params.playlistsId, (err, playlistToDelete) => {
+    if (err) return console.log(err);
+
+    db.Movie.deleteMany({_id: {$in: playlistToDelete.movies}}, (err, result) => {
+      if (err) return console.log(err);
+
+      res.redirect('/playlists');
+    })
+  })
+});
 
 
 
