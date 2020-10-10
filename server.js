@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 var db = require('./config/keys').mongoURI;
 
 // ---------------------- Connect to Mongo
-const connectionString = 'mongodb://localhost:27017/vampire';
+const connectionString = 'mongodb://localhost:27017/flixr';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
@@ -81,7 +81,8 @@ app.use(function(req, res, next) {
 // ---------------------- Routes 
 // app.use('/users', require('./controllers/users.js'));
 app.use('/users', require('./controllers/usersController'));
-app.use('/', require('./controllers/index.js'));
+// app.use('/', require('./controllers/index.js'));
+app.use('/playlists', require('./controllers/playlistsController'));
 
 app.get('/', (req, res) => {
   res.render('index');
