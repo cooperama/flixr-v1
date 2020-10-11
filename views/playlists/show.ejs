@@ -7,14 +7,14 @@
   <p><%= playlist.description %></p>
 <% } %> 
 
-<% playlist.movies.forEach(movie => { %>
-  <div>
-    <h3><a href="#"><%= movie.title %></a></h3>
-    <p><%= movie.overview %></p>
-  </div>
-<% }) %>
+<div class="playlist-list">
+  
+  <% playlist.movieIDs.forEach(movieID => { %>
+    
 
-
+    <% }) %>
+    
+</div>
 
 
 
