@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     };
     res.status(200).json(playlist);
   })
-}) 
+})
 
 // ----------------- PUT (test) movieIds for existing playlists
 router.put('/:id', (req, res) => {
@@ -30,15 +30,12 @@ router.put('/:id', (req, res) => {
 })
 
 // ----------------- GET index
-
 router.get('/', (req, res) => {
   db.Playlist.find({}, (err, allPlaylists) => {
-    if (err) return console.log(err);
-
-    const context = {
+  if (err) return console.log(err);
+  const context = {
       playlists: allPlaylists,
-    };
-
+  };
     res.render('/playlists/index', context);
   })
 });
