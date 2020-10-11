@@ -11,6 +11,8 @@ const playlistSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  // Remember that this is an array and will have to be sent as one
+  // even if it's one value
   movieIDs: [{
     type: String
   }]
