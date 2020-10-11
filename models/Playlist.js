@@ -6,11 +6,14 @@ const playlistSchema = new mongoose.Schema({
     required: true,
   },
   description: String,
-  movies: [{
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Movie'
+    ref: 'User',
+    required: true,
+  },
+  movieIDs: [{
+    type: String
   }]
 }, {timestamps: true});
-
 
 module.exports = mongoose.model('Playlist', playlistSchema);

@@ -1,3 +1,5 @@
 // ---------- Requiring Models
-const User = require('./User');
-exports.User = User;
+module.exports = {
+    User: require('./User'),
+    Playlist: require('./Playlist')
+}
