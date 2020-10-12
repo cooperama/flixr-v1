@@ -225,16 +225,16 @@ function addQueryParams(choice) {
       delete queryParams.with_original_language;
       break;
     case 'dolphin':
-      queryParams["vote_average.gte"] = 7.3;
+      queryParams["vote_average_gte"] = 7.3;
       break;
     case 'dine-in':
-      queryParams["with_runtime.gte"] = 90;
+      queryParams["with_runtime_gte"] = 90;
       break;
     case 'brunch':
-      queryParams["release_date.gte"] = 1985;
+      queryParams["release_date_gte"] = 1985;
       break;
     case 'skiing':
-      queryParams["vote_count.gte"] = 100
+      queryParams["vote_count_gte"] = 300;
       break;
   }
   return queryParams;
@@ -249,13 +249,18 @@ const genreIdsArr = Object.keys(genreCount);
 
 let questionsArr;
 let questionIndex = 0;
-let queryParams = {};
+let queryParams = {
+  "vote_count.gte": 100,
+};
 
 
 startQuizBtn.addEventListener('click', (e) => {
   questionsArr = generateQuestionnaire();
   quizletEl.appendChild(questionsArr[questionIndex]);
   startQuizBtn.remove();
+  // hide form-group
+  const inputEls = document.querySelectorAll('.form-group')
+  inputEls.forEach(inputEl => inputEl.style.display = 'none')
 })
 
 
@@ -273,13 +278,36 @@ quizletEl.addEventListener('click', (e) => {
 
     genreIdsArr.forEach(genre => genreCount[genre] = 0)
     questionIndex = 0;
-    queryParams = {};
+    queryParams = {
+      "vote_count.gte": 100,
+    };
 
     // ---------------- 
 
     console.log('queryParamString: ', queryParamString)
 
     // ----------------
+
+    const submitBtn = document.createElement('button');
+    submitBtn.innerText = 'get movies';
+    submitBtn.setAttribute('href', '/movies/recommendations');
+    quizletEl.appendChild(submitBtn);
+
+    const paramsToSend = document.getElementById('paramString');
+    paramsToSend.setAttribute('value', queryParamString);
+    // paramsToSend.innerHTML = queryParamString;
+
+    let url = '/movies/recommendations/';
+    for (let key in queryParamString) {
+      url += "&" + key + "=" + queryParamString[key];
+    }
+
+
+    document.getElementById('moviesForm').action = url;
+    // const moviesForm = document.getElementById('moviesForm')
+    // moviesForm.action = url;
+
+    // document.getElementById('moviesForm').action = '/movies/recommendations';
 
   } else {
     questionIndex++;

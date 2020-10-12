@@ -1,29 +1,56 @@
 <%- include('../partials/header.ejs') %>
 
 
+<form action="/movies/recommendations" method="GET"></form>
+
 
 <div class="recommended-movies">
   <div class="three-movies">
     <button class="previous">previous</button>
+
+    <h1>hi</h1>
+
     <% let start = 0; %> 
     <% let end = start + 3; %> 
-    <% for( let i = start; i < end; i++ ) { %>
 
-      <div class="movie-one">
-        <img src="<%= imageEndpoint.moviesList[i].poster_path %>" alt="<%= moviesList[i].title %>" />
-      </div>
-    
-    <% } %>
 
-    <button class="next">next</button>
+      
+      <% for( let i = start; i < end; i++ ) { %>
+        
+        <div class="movie-<% i %>">
+          <img src="<%= imageEndpoint.moviesList[i].poster_path %>" alt="<%= moviesList[i].title %>" />
+        </div>
+        
+        <% } %>
+        
+        <button class="next">next</button>
+        
 
-      click next button, start += 3
-      if end > moviesList.length
 
   </div>
 </div>
 
+<div class="form-group">
+  <input 
+    type="text" 
+    id="playlist-title" 
+    name="title" 
+    value="playlist name"
+  />
+</div>
 
+<div class="form-group">
+  <textarea 
+    id="playlist-description" 
+    name="description" 
+    cols="30" 
+    rows="10" 
+    placeholder="Enter playlist description here. (You can change this later)">
+  </textarea>
+</div>
+
+
+</form>
 
 
 

@@ -5,19 +5,48 @@ const mongoose = require('mongoose');
 const { route } = require('.');
 
 const db = require('../models');
-const { create } = require('../models/User');
+const { create } = require('../models/User'); // What's this do?
+
+
+
+// ----------------- GET index
+router.get('/', (req, res) => {
+  db.Playlist.find({}, (err, allPlaylists) => {
+  if (err) return console.log(err);
+  const context = {
+      playlists: allPlaylists,
+  };
+    res.render('playlists/index', context);
+  })
+});
+
+
+// Do we need to pass the info about the user's id?
+// ----------------- GET new
+router.get('/new', (req, res) => {
+  res.render('playlists/new');
+});
+
 
 // ----------------- CREATE user playlist
 router.post('/', (req, res) => {
   db.Playlist.create({
     title: req.body.title,
     description: req.body.description,
+
+    // Don't we need to find the user and push the playlist in?
     user: req.body.userId,
+
+
   }, (err, playlist) => {
     if (err) return console.log(err);
     res.status(200).json(playlist);
+
+    //
+    res.redirect(`/playlists/${playlist._id}`);
   })
 })
+
 
 // ----------------- PUT (UPDATE & EDIT) movieIds for existing playlists
 router.put('/:id', (req, res) => {
@@ -26,19 +55,32 @@ router.put('/:id', (req, res) => {
     playlist.movieIDs = req.body.movieChoices
     // Will need to revisit for views implementation
     playlist.save();
+
+    res.redirect(`/playlist/${req.params.id}`);
+
     return res.status(200).json(playlist);
   })
 })
 
-// ----------------- PUT routes to edit playlist page
-// router.get('/:id/edit', (req, res) => {
-// })
+// ----------------- GET routes to edit playlist page
+router.get('/:id/edit', (req, res) => {
+  db.Playlist.findById(req.params.id, (err, playlistToEdit) => {
+    if (err) return console.log(err);
+    
+    const context = {
+      playlist: playlistToEdit
+    }
+  
+    res.render(`playlist/${req.params.id}/edit`, context);
+  })
+})
 
 
 // ----------------- GET playlists for existing users
 router.get('/users/:id', async (req, res) => {
   let playlists = await db.Playlist.find({ user: req.params.id})
     res.json(playlists);
+
 })
 
 // ----------------- GET (SHOW) - movie details (description, poster path, voting average)
@@ -62,21 +104,7 @@ router.get('/:id/movies', async (req, res) => {
   res.json(movieDetails);
 })
 
-// ----------------- GET index
-router.get('/', (req, res) => {
-  db.Playlist.find({}, (err, allPlaylists) => {
-  if (err) return console.log(err);
-  const context = {
-      playlists: allPlaylists,
-  };
-    res.render('/playlists/index', context);
-  })
-});
 
-// ----------------- GET new
-router.get('/new', (req, res) => {
-  res.render('/playlists/new');
-});
 
 // ----------------- DELETE playlist
 router.delete('/:id', async (req, res) => {
