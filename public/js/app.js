@@ -250,7 +250,7 @@ const genreIdsArr = Object.keys(genreCount);
 let questionsArr;
 let questionIndex = 0;
 let queryParams = {
-  "vote_count.gte": 100,
+  "vote_count_gte": 100,
 };
 
 
@@ -279,7 +279,7 @@ quizletEl.addEventListener('click', (e) => {
     genreIdsArr.forEach(genre => genreCount[genre] = 0)
     questionIndex = 0;
     queryParams = {
-      "vote_count.gte": 100,
+      "vote_count_gte": 100,
     };
 
     // ---------------- 
@@ -288,26 +288,26 @@ quizletEl.addEventListener('click', (e) => {
 
     // ----------------
 
+
+ 
+
     const submitBtn = document.createElement('button');
     submitBtn.innerText = 'get movies';
-    submitBtn.setAttribute('href', '/movies/recommendations');
+    submitBtn.setAttribute('type', 'submit');
     quizletEl.appendChild(submitBtn);
 
-    const paramsToSend = document.getElementById('paramString');
-    paramsToSend.setAttribute('value', queryParamString);
-    // paramsToSend.innerHTML = queryParamString;
-
-    let url = '/movies/recommendations/';
-    for (let key in queryParamString) {
-      url += "&" + key + "=" + queryParamString[key];
-    }
-
+    let url = 'http://localhost:5000/movies/recommendations';
+    const keysArr = Object.keys(queryParamString);
+    for (let i = 0; i < keysArr.length; i++) {
+      if (i === 0) {
+        url += "?" + keysArr[i] + "=" + queryParamString[keysArr[i]];
+      } else {
+        url += "&" + keysArr[i] + "=" + queryParamString[keysArr[i]];
+      }  
+    }  
 
     document.getElementById('moviesForm').action = url;
-    // const moviesForm = document.getElementById('moviesForm')
-    // moviesForm.action = url;
 
-    // document.getElementById('moviesForm').action = '/movies/recommendations';
 
   } else {
     questionIndex++;
