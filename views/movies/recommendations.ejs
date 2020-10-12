@@ -2,8 +2,26 @@
 
 
 
+<div class="recommended-movies">
+  <div class="three-movies">
+    <button class="previous">previous</button>
+    <% let start = 0; %> 
+    <% let end = start + 3; %> 
+    <% for( let i = start; i < end; i++ ) { %>
 
+      <div class="movie-one">
+        <img src="<%= imageEndpoint.moviesList[i].poster_path %>" alt="<%= moviesList[i].title %>" />
+      </div>
+    
+    <% } %>
 
+    <button class="next">next</button>
+
+      click next button, start += 3
+      if end > moviesList.length
+
+  </div>
+</div>
 
 
 
