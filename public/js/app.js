@@ -1,3 +1,5 @@
+// const { delete } = require("../../controllers/moviesController");
+
 const genreCount = {
   28: 0,
   12: 0,
@@ -139,6 +141,8 @@ const genreIncrementCount = {
 
 const comparisonOptions = [
   ['New York', 'Seoul'], // language
+  ['Bangkok', 'Las Vegas'], // language
+  ['London', 'Paris'], // language
   ['iguana', 'dolphin'], // rating
   ['dine-in', 'take-out'], // runtime
   ['awkward', 'witty'], // vote average
@@ -148,7 +152,7 @@ const comparisonOptions = [
   ['sandwich', 'spaghetti'],
   ['air', 'earth'],
   ['blue', 'red'], 
-  // ['camping', 'skiing'],
+  ['camping', 'skiing'], // vote count
   // ['dragon', 'spaceship'],
   // ['present', 'future'],
   // ['vacation', 'staycation'],
@@ -209,23 +213,28 @@ function getTopGenres(genreCountObj) {
 }
 
 function addQueryParams(choice) {
-  // ??????????????? How to put the params from here into the params object?
   switch (choice) {
+    case 'Las Vegas':
+    case 'London':
     case 'New York':
-      // queryParams.push('en')
-      queryParams.language = 'en';
+      queryParams.with_original_language = 'en';
+      break;
+    case 'Paris':
+    case 'Bangkok':
+    case 'Seoul':
+      delete queryParams.with_original_language;
       break;
     case 'dolphin':
-      // queryParams.push(7.5)
-      queryParams.vote_average_gte = 7.5;
+      queryParams["vote_average.gte"] = 7.3;
       break;
     case 'dine-in':
-      // queryParams.push(90)
-      queryParams.with_runtime_gte = 90;
+      queryParams["with_runtime.gte"] = 90;
       break;
     case 'brunch':
-      // queryParams.push(1985)
-      queryParams.release_date_gte = 1985;
+      queryParams["release_date.gte"] = 1985;
+      break;
+    case 'skiing':
+      queryParams["vote_count.gte"] = 100
       break;
   }
   return queryParams;
@@ -240,7 +249,6 @@ const genreIdsArr = Object.keys(genreCount);
 
 let questionsArr;
 let questionIndex = 0;
-// let queryParams = [];
 let queryParams = {};
 
 
@@ -259,24 +267,16 @@ quizletEl.addEventListener('click', (e) => {
     addQueryParams(genre);
   }
 
-  // if this is the last question, fill params object(????????? how), send request to /recommendations
   if (questionIndex === questionsArr.length - 1) {
-    // ???????????? Don't know what to do with the params string..
-    let genreParamString = {
-      with_genres: getTopGenres(genreCount)
-    };
-    // get query params from queryParams array
+    queryParams.with_genres = getTopGenres(genreCount)
     let queryParamString = queryParams;
-    // ?????? Should it be an object?
 
     genreIdsArr.forEach(genre => genreCount[genre] = 0)
     questionIndex = 0;
-    // queryParams = [];
     queryParams = {};
 
     // ---------------- 
 
-    console.log('genreParamString: ', genreParamString)
     console.log('queryParamString: ', queryParamString)
 
     // ----------------
