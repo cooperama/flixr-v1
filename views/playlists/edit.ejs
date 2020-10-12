@@ -1,9 +1,27 @@
 <%- include('../partials/header.ejs') %>
 
 
+<h2><%= playlist.title %></h2>
 
+<form action="/playlists/<%= playlist._id %>?_method=PUT " method="POST">
+  
+  <div class="form-group">
+    <label for="title">Playlist Name</label>
+    <input type="text" id="title" name="title" value="<%= playlist.title %>">
+  </div>
 
+  <div class="form-group">
+    <textarea name="description" id="description" cols="30" rows="10"><%= playlist.description %></textarea>
+  </div>
 
+  <div class="form-group">
+  <% playlist.movieIDs.forEach((movie, i) => { %>
+    <label for="movie-<%= i + 1 %>"><%= movie.title %></label>
+    <input type="checkbox" id="movie-<%= i + 1 %>" name="movie-<%= i + 1 %>" checked>
+  <% }) %>
+  </div>
+
+</form>
 
 
 

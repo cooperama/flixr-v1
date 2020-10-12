@@ -2,10 +2,19 @@
 
 
 
+<h1><%= playlist.title %></h1>
+<% if (playlist.description) { %> 
+  <p><%= playlist.description %></p>
+<% } %> 
 
+<div class="playlist-list">
+  
+  <% playlist.movieIDs.forEach(movieID => { %>
+    
 
-
-
+    <% }) %>
+    
+</div>
 
 
 
