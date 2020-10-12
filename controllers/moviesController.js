@@ -20,33 +20,14 @@ router.get('/recommendations', async (req, res) => {
 
     const context = {
         moviesList: response.data.results,
-        imageEndpoint: 'https://image.tmdb.org/t/p/w500'
     }
 
     res.render('movies/recommendations', context);
-
-    console.log(response.data);
-    return res.status(200).json(response.data)
-}
+    }
     catch(err) {
         console.log(err.message);
     }
 })
 
-// router.get('/recommendations', async (req, res) => {
-//     try {
-//         let imageResponse = await axios.get('https://image.tmdb.org/t/p/w500', {
-//             params: {
-//                 api_key: '64bbb4feb014546a2feb336e5e661f16',
-//                 poster_path: req.query.poster_path,
-//             }
-//         })
-//         return res.status(200).json(response.data);
-//     }
-
-//     catch(err) {
-//         console.log(err.message);
-//     }
-// })
 
 module.exports = router;

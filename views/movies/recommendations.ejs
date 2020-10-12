@@ -8,7 +8,8 @@
   <div class="three-movies">
     <button class="previous">previous</button>
 
-    <h1>hi</h1>
+
+
 
     <% let start = 0; %> 
     <% let end = start + 3; %> 
@@ -18,7 +19,7 @@
       <% for( let i = start; i < end; i++ ) { %>
         
         <div class="movie-<% i %>">
-          <img src="<%= imageEndpoint.moviesList[i].poster_path %>" alt="<%= moviesList[i].title %>" />
+          <img src="https://image.tmdb.org/t/p/w500<%= moviesList[i].poster_path %>" alt="<%= moviesList[i].title %>" />
         </div>
         
         <% } %>
