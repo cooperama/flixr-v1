@@ -30,6 +30,11 @@ router.put('/:id', (req, res) => {
   })
 })
 
+// ----------------- PUT routes to edit playlist page
+// router.get('/:id/edit', (req, res) => {
+// })
+
+
 // ----------------- GET playlists for existing users
 router.get('/users/:id', async (req, res) => {
   let playlists = await db.Playlist.find({ user: req.params.id})
