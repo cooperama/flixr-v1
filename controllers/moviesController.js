@@ -26,9 +26,7 @@ router.get('/recommendations', async (req, res) => {
             "vote_count.gte": req.query.vote_count_gte,
         }
     })
-
-    console.log(response.config);
-
+    // console.log(response.data.results);
 
     const context = {
         moviesList: response.data.results,
