@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
     // Will need to revisit for views implementation
     playlist.save();
 
-    res.render(`/playlist/${req.params.id}`);
+    res.render(`/playlists/${req.params.id}`);
 
     return res.status(200).json(playlist);
   })
@@ -77,7 +77,7 @@ router.get('/:id/edit', (req, res) => {
       playlist: playlistToEdit
     }
   
-    res.render(`playlist/${req.params.id}/edit`, context);
+    res.render(`playlists/${req.params.id}/edit`, context);
   })
 })
 
