@@ -9,14 +9,6 @@ router.get('/recommendations', async (req, res) => {
     try {
     let response = await axios.get('https://api.themoviedb.org/3/discover/movie', {
         params: { 
-            // api_key: '64bbb4feb014546a2feb336e5e661f16',
-            // with_genres: "18,36",
-            // with_original_language: "en",
-            // "vote_average.gte": 7.3,
-            // "release_date.gte": 1985,
-            // // "with_runtime.gte": req.query.with_runtime_gte,
-            // "vote_count.gte": 100,
-
             api_key: '64bbb4feb014546a2feb336e5e661f16',
             with_genres: req.query.genre_ids,
             with_original_language: req.query.language,
@@ -26,8 +18,6 @@ router.get('/recommendations', async (req, res) => {
             "vote_count.gte": req.query.vote_count_gte,
         }
     })
-    // console.log(response.data.results);
-
     const context = {
         moviesList: response.data.results,
     }
