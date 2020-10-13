@@ -381,6 +381,8 @@ const quizletEl = document.querySelector('.quizlet');
 const startQuizBtn = document.querySelector('.start-quiz');
 const genreIdsArr = Object.keys(genreCount);
 const movieCarousel = document.getElementById('movieCarousel');
+const reviewBtn = document.getElementById('review-playlist');
+const createBtn = document.querySelector('.create-playlist-form');
 let questionsArr;
 let questionIndex = 0;
 
@@ -430,6 +432,17 @@ if (quizletEl) {
   })
 }
 
+if (reviewBtn) {
+  reviewBtn.addEventListener('click', () => {
+    createBtn.classList.toggle('display-content');
+    document.querySelector('.movies-display').classList.toggle('hide-content');
+    document.querySelector('.review-button').classList.toggle('hide-content');
+    document.querySelector('.review-movies').classList.toggle('display-content');
+  })
+}
+
+
+
 // -------------- Movie Recommendations Carousel
 $('.carousel .carousel-item').each(function(){
   var minPerSlide = 3;
@@ -450,15 +463,29 @@ $('.carousel .carousel-item').each(function(){
 });
 
 if (movieCarousel) {
+  const moviePlaylist = [];
   movieCarousel.addEventListener('click', (e) => {
     const {tagName, id} = e.target;
+    console.log(e)
     if (tagName.toLowerCase() === 'img') {
       const movieId = e.target.alt;
+
+      // adds hidden input field to form
       const chosenMovie = document.createElement('input');
       chosenMovie.setAttribute('type', 'hidden')
       chosenMovie.setAttribute('name', 'movieIDs');
       chosenMovie.setAttribute('value', movieId);
-      document.getElementById('create-playlist-form').appendChild(chosenMovie)
+      document.querySelector('.create-playlist-form').appendChild(chosenMovie);
+    
+      // adds movie to list for review
+      if (!moviePlaylist.includes(e.target.alt)) {
+        moviePlaylist.push(e.target.alt);
+        console.log(moviePlaylist);
+        const addedMovie = document.createElement('img')
+        addedMovie.setAttribute('src', e.target.currentSrc)
+        addedMovie.setAttribute('alt', e.target.alt)      
+        document.querySelector('.chosen-movies').appendChild(addedMovie);
+      }
     }
   })
 }

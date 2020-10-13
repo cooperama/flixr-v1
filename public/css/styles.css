@@ -7,6 +7,41 @@ body {
   align-items: center;
 }
 
+.create-playlist-form {
+  display: none;
+}
+
+.playlist-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+textarea {
+  width: 500px;
+}
+
+.review-movies {
+  display: none;
+}
+
+.chosen-movies {
+  width: 100%;
+  height: 500px;
+}
+
+.chosen-movies img {
+  width: 30%;
+}
+
+/********** Toggled Classes */
+.display-content {
+  display: block;
+}
+
+.hide-content {
+  display: none;
+}
 
 @media (max-width: 768px) {
   .carousel-inner .carousel-item > div {
