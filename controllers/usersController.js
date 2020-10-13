@@ -67,7 +67,7 @@ router.post('/register', (req, res) => {
                   'success_msg',
                   'Success! Your account has been created. Log in!'
                 );
-                res.redirect('./users/login');
+                res.redirect('./login');
               })
               .catch(err => console.log(err));
           });
@@ -80,10 +80,10 @@ router.post('/register', (req, res) => {
 // Login
 router.post('/login', 
 passport.authenticate('local', {
-  failureRedirect: './users/login',
+  failureRedirect: './login',
   failureFlash: true
 }), (req, res, next) => {
-  res.redirect('./users/dashboard')
+  res.redirect('../dashboard')
   // req.user.password = undefined;
   // res.json(req.user);
 });
@@ -92,7 +92,7 @@ passport.authenticate('local', {
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You have logged out');
-  res.redirect('./users/login');
+  res.redirect('./login');
 });
 
 module.exports = router;
