@@ -1,11 +1,11 @@
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const { route } = require('.');
+// const mongoose = require('mongoose');
+// const { route } = require('.');
 
 const db = require('../models');
-const { create } = require('../models/User'); // What's this do?
+// const { create } = require('../models/User'); 
 
 
 
@@ -33,16 +33,11 @@ router.post('/', (req, res) => {
   db.Playlist.create({
     title: req.body.title,
     description: req.body.description,
-
-    // Don't we need to find the user and push the playlist in?
     user: req.body.userId,
-
-
   }, (err, playlist) => {
     if (err) return console.log(err);
     res.status(200).json(playlist);
 
-    //
     res.redirect(`/playlists/${playlist._id}`);
   })
 })
