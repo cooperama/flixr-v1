@@ -1,11 +1,8 @@
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
-// const mongoose = require('mongoose');
-// const { route } = require('.');
 
 const db = require('../models');
-// const { create } = require('../models/User'); 
 
 
 
@@ -21,7 +18,6 @@ router.get('/', (req, res) => {
 });
 
 
-// Do we need to pass the info about the user's id?
 // ----------------- GET new
 router.get('/new', (req, res) => {
   res.render('playlists/new');
@@ -30,15 +26,30 @@ router.get('/new', (req, res) => {
 
 // ----------------- CREATE user playlist
 router.post('/', (req, res) => {
+  console.log(req.user)
   db.Playlist.create({
     title: req.body.title,
     description: req.body.description,
-    user: req.body.userId,
+    user: req.user._id,
+    movieIdString: req.body.movieIdString
+    // movieIDs: req.body.movieIDs,
   }, (err, playlist) => {
     if (err) return console.log(err);
-    res.status(200).json(playlist);
+    // res.status(200).json(playlist);
 
-    res.redirect(`/playlists/${playlist._id}`);
+    db.Playlist.findById(playlist._id, (err, foundPlaylist) => {
+      if (err) return console.log(err);
+
+      let parsedMovieIds = foundPlaylist.movieIdString.split(',')
+      parsedMovieIds = parsedMovieIds.slice(0, parsedMovieIds.length - 1);
+      console.log(parsedMovieIds);
+      parsedMovieIds.forEach(movieId => {
+        foundPlaylist.movieIDs.push(movieId);
+
+        console.log(foundPlaylist)
+      });
+      res.redirect(`/playlists/${playlist._id}`);
+    })
   })
 })
 
@@ -51,7 +62,7 @@ router.put('/:id', (req, res) => {
     // Will need to revisit for views implementation
     playlist.save();
 
-    res.redirect(`/playlist/${req.params.id}`);
+    res.render(`/playlist/${req.params.id}`);
 
     return res.status(200).json(playlist);
   })

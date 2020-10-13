@@ -464,29 +464,63 @@ $('.carousel .carousel-item').each(function(){
 
 if (movieCarousel) {
   const moviePlaylist = [];
-  movieCarousel.addEventListener('click', (e) => {
-    const {tagName, id} = e.target;
-    console.log(e)
-    if (tagName.toLowerCase() === 'img') {
-      const movieId = e.target.alt;
+  let movieIdStrings = '';
+  // adds hidden input field to form
+  // const chosenMovie = document.createElement('input');
+  // chosenMovie.setAttribute('type', 'hidden')
+  // chosenMovie.setAttribute('name', 'movieIdString');
 
-      // adds hidden input field to form
-      const chosenMovie = document.createElement('input');
-      chosenMovie.setAttribute('type', 'hidden')
-      chosenMovie.setAttribute('name', 'movieIDs');
-      chosenMovie.setAttribute('value', movieId);
-      document.querySelector('.create-playlist-form').appendChild(chosenMovie);
+  movieCarousel.addEventListener('click', (e) => {
+    // console.log(e)
+    const pParentEl = e.target.parentElement;
+    const childNode = pParentEl.firstElementChild;
+    const imgNode = childNode.firstElementChild;
+
+
+    if (imgNode.nodeName.toLowerCase() === 'img') {
+      // const movieId = imgNode.alt;
+
+      movieIdStrings += imgNode.alt + ','
+      console.log(movieIdStrings)
+
+      document.getElementById('movieIdString').setAttribute('value', movieIdStrings);
+
+      // // adds hidden input field to form
+      // const chosenMovie = document.createElement('input');
+      // chosenMovie.setAttribute('type', 'hidden')
+      // chosenMovie.setAttribute('name', 'movieIDs');
+
+
+      // chosenMovie.setAttribute('value', movieId);
+      // document.querySelector('.create-playlist-form').appendChild(chosenMovie);
     
       // adds movie to list for review
-      if (!moviePlaylist.includes(e.target.alt)) {
-        moviePlaylist.push(e.target.alt);
-        console.log(moviePlaylist);
+      // if (movieIdStrings.indexOf(imgNode.alt + ',') === -1) {
+      //   // moviePlaylist.push(imgNode.alt);
+      //   const addedMovie = document.createElement('img')
+      //   addedMovie.setAttribute('src', imgNode.currentSrc)
+      //   addedMovie.setAttribute('alt', imgNode.alt)      
+      //   document.querySelector('.chosen-movies').appendChild(addedMovie);
+      // }
+      if (!moviePlaylist.includes(imgNode.alt)) {
+        moviePlaylist.push(imgNode.alt);
         const addedMovie = document.createElement('img')
-        addedMovie.setAttribute('src', e.target.currentSrc)
-        addedMovie.setAttribute('alt', e.target.alt)      
+        addedMovie.setAttribute('src', imgNode.currentSrc)
+        addedMovie.setAttribute('alt', imgNode.alt)      
         document.querySelector('.chosen-movies').appendChild(addedMovie);
       }
     }
-  })
+
+  //   async function setMovieAttribute() {
+  //     let movieIdString = document.getElementById('movieIdString');
+  //     let createPlaylist = document.querySelector('.create-playlist');
+  //     movieIdString.setAttribute('value', movieId);
+  //     createPlaylist.addEventListener('click', async () => {
+  //         await setMovieAttribute();
+  //     }) 
+  // }
+    }
+
+  )
 }
 
