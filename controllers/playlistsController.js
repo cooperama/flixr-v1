@@ -61,15 +61,25 @@ router.post('/', (req, res) => {
 router.put('/:playlistId', (req, res) => {
   db.Playlist.findById(req.params.playlistId, (err, playlist) => {
     //This will contain our array of movies the user has chosen;
-    playlist.movieIDs = req.body.movieChoices
-    // Will need to revisit for views implementation
+
+    const newMovieIds = [];
+    // movieChoices is a string to be parsed
+    let parsedMovieIds = req.body.movieChoices.split(',')
+    parsedMovieIds = parsedMovieIds.slice(0, parsedMovieIds.length - 1);
+
+    parsedMovieIds.forEach(movieId => {
+      newMovieIds.push(movieId);
+    });
+
+    playlist.movieIDs = newMovieIds;
+    
     playlist.save();
 
     const context = {
       playlist,
     }
     
-    res.redirect(`/playlists/${req.params.id}`);
+    res.redirect(`/playlists/${playlist.id}`);
   })
 })
 
