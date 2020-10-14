@@ -4,7 +4,7 @@ const router = express.Router();
 
 const db = require('../models');
 // require the app.js or new file for updating playlist, render as context with edit page
-const editHelper = require('../editHelper');
+// const editHelper = require('../editHelper');
 // const editHelper = require('../public/js/editHelper.js');
 
 
@@ -65,12 +65,11 @@ router.put('/:playlistId', (req, res) => {
     // Will need to revisit for views implementation
     playlist.save();
 
-    res.render(`/playlists/${req.params.id}`);
     const context = {
       playlist,
     }
-
-    res.render(`playlists/${req.params.playlistId}`, context);
+    
+    res.redirect(`/playlists/${req.params.id}`);
   })
 })
 
@@ -95,14 +94,14 @@ router.get('/:playlistId/edit', async (req, res) => {
       movieDetails.push(response.data); 
     }
     catch(err) {
-      console.log('in movies async function', err.message);
+      console.log('in edit movies get function', err.message);
     }
   };
   const context = {
     movies: movieDetails,
     playlist: playlist,
     // editing helper function JS file
-    editHelper: editHelper
+    // editHelper: editHelper
   }
   res.render('playlists/edit', context);
 })
@@ -141,7 +140,7 @@ router.get('/:playlistId', async (req, res, next) => {
       movieDetails.push(response.data); 
     }
     catch(err) {
-      console.log('in movies async function', err.message);
+      console.log('in show playlist function', err.message);
     }
   };
   console.log(movieDetails.length)

@@ -9,9 +9,12 @@ function updatePlaylistMovies() {
 
   movieIdInputs.forEach(input => {
     const movieId = input.getAttribute('name');
-    
+
+    console.log(movieId)
+
     /// not sure
-    if (input.getAttribute('checked') === "on") {
+    if (input.checked) {
+      console.log('checked')
       movieChoices.push(movieId);
     }
   })
@@ -26,6 +29,6 @@ function updatePlaylistMovies() {
 }
 
 
-module.exports = {
-  editHelper: updatePlaylistMovies
-}
+// module.exports = {
+//   editHelper: updatePlaylistMovies
+// }
