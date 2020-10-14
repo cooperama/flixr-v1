@@ -1,4 +1,4 @@
-// -------------- Global Variables
+// -------------- Genre Tracking Objects
 
 
 const genreCount = {
@@ -282,7 +282,7 @@ const comparisonOptions = [
 ];
 
 
-// -------------- Criteria Functions
+// -------------- Search Criteria Functions
 function randomIndexGenerator(arr) {
   return Math.floor(Math.random() * arr.length);
 }
@@ -377,7 +377,6 @@ function addQueryParams(choice) {
       break;
   }
 }
-
 
 
 

@@ -1,23 +1,35 @@
 <%- include('../partials/header.ejs') %>
 
 
-
 <h1><%= playlist.title %></h1>
 <% if (playlist.description) { %> 
   <p><%= playlist.description %></p>
 <% } %> 
+<div>
 
-<ul>
-  <% for( let i = 0; i < playlist.movieIDs.length; i++ ) { %>
-    <li><%= playlist.movieIDs[i] %></li>
+  <% for( let i = 0; i < movies.length; i++ ) { %>
+
+  <div>
+      <h3><%= movies[i].title %></h3>
+      <% if (movies[i].tagline) { %> 
+        <p><%= movies[i].tagline %></p>
+      <% } %> 
+      <img src="https://image.tmdb.org/t/p/w500<%= movies[i].poster_path %>" alt="<%= movies[i].title %>">
+      <p><%= movies[i].overview %></p>
+
+  </div>
+    
   <% } %>
-</ul>
 
+</div>
 
 <form action="/playlists/<%= playlist._id %>/?_method=DELETE" method="POST">
   <button type="submit">delete playlist</button>
 </form>
 
+<form action="/playlists/<%= playlist._id %>/edit" method="GET">
+  <button type="submit">edit playlist</button>
+</form>
 
 
 
