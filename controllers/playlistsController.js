@@ -32,24 +32,22 @@ router.post('/', (req, res) => {
     description: req.body.description,
     user: req.user._id,
     movieIdString: req.body.movieIdString
-    // movieIDs: req.body.movieIDs,
   }, (err, playlist) => {
     if (err) return console.log(err);
-    // res.status(200).json(playlist);
 
     db.Playlist.findById(playlist._id, (err, foundPlaylist) => {
       if (err) return console.log(err);
 
       let parsedMovieIds = foundPlaylist.movieIdString.split(',')
       parsedMovieIds = parsedMovieIds.slice(0, parsedMovieIds.length - 1);
-      console.log(parsedMovieIds);
       parsedMovieIds.forEach(movieId => {
         foundPlaylist.movieIDs.push(movieId);
-
-        console.log(foundPlaylist)
       });
-      res.redirect(`/playlists/${playlist._id}`);
+      foundPlaylist.save();
     })
+    // 
+    res.redirect(`/playlists/${playlist._id}/movies`);
+    // res.redirect(`/playlists/${playlist._id}`);
   })
 })
 
@@ -62,12 +60,30 @@ router.put('/:id', (req, res) => {
     // Will need to revisit for views implementation
     playlist.save();
 
-    res.render(`/playlist/${req.params.id}`);
+    const context = {
+      playlist,
+    }
 
-    return res.status(200).json(playlist);
+    res.render(`playlists/${req.params.id}`, context);
   })
 })
 
+// The playlist should be visible to everyone but can only be edited by the user... so how do?
+// ----------------- GET show playlist
+router.get('/:id', (req, res) => {
+  db.Playlist.findById(req.params.id, (err, playlist) => {
+    // playlist.movieIDs = req.body.movieChoices
+    console.log(playlist)
+
+    const context = {
+      playlist,
+      }
+    res.render(`playlists/show`, context);
+  })
+})
+
+
+// Only the user the playlist belongs to should be able to edit the playlist
 // ----------------- GET routes to edit playlist page
 router.get('/:id/edit', (req, res) => {
   db.Playlist.findById(req.params.id, (err, playlistToEdit) => {
@@ -77,17 +93,23 @@ router.get('/:id/edit', (req, res) => {
       playlist: playlistToEdit
     }
   
-    res.render(`playlist/${req.params.id}/edit`, context);
+    res.render(`playlists/${req.params.id}/edit`, context);
   })
 })
 
 
 // ----------------- GET playlists for existing users
+
 router.get('/users/:id', async (req, res) => {
   let playlists = await db.Playlist.find({ user: req.params.id})
-    res.json(playlists);
-
+    // res.json(playlists);
+    const context = {
+      playlist: playlists,
+    }
+    console.log(playlists)
+    // res.render(`playlists/show`, context);
 })
+
 
 // ----------------- GET (SHOW) - movie details (description, poster path, voting average)
 // playlist/ids/movies
@@ -105,9 +127,14 @@ router.get('/:id/movies', async (req, res) => {
       }
     })
     movieDetails.push(response.data); 
+    console.log('------- movies object -----------', movieDetails)
+    const context = {
+      movies: movieDetails,
+      playlist: playlist
+    }
+    res.render('movies/show', context);
     // response."data" is axios' standard way of delivering data back to us
   };
-  res.json(movieDetails);
 })
 
 
@@ -115,7 +142,8 @@ router.get('/:id/movies', async (req, res) => {
 // ----------------- DELETE playlist
 router.delete('/:id', async (req, res) => {
   await db.Playlist.findByIdAndDelete(req.params.id);
-    res.json({msg: "Finished"})
+    // res.json({msg: "Finished"})
+  res.redirect('/playlists')
 })
 
 module.exports = router;

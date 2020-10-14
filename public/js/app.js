@@ -323,20 +323,26 @@ function incrementGenre(choice) {
 }
 
 function getTopGenres(genreCountObj) {
+  // I know this is WAC af but let's dry it up later
   let paramString = [];
+  let paramString2 = [];
+  let paramString3 = [];
+  // sort genres in descending order
   // https://stackoverflow.com/questions/1069666/sorting-object-property-by-values
   const sortedGenres = [];
   for (genre in genreCountObj) {
     sortedGenres.push([genre, genreCountObj[genre]]);
   }
   sortedGenres.sort((a, b) => b[1] - a[1]);
-  paramString.push(sortedGenres[0][0], sortedGenres[1][0])
 
-  // add to value of input
-  const genreParams = paramString.join(',');
+  paramString.push(sortedGenres[0][0], sortedGenres[1][0])
+  paramString2.push(sortedGenres[2][0], sortedGenres[1][0])
+  paramString3.push(sortedGenres[2][0], sortedGenres[0][0])
+
+  // add top genres into value of input for req.query
+  const genreParams = paramString.join(',').concat('|').concat(paramString2.join(',')).concat('|').concat(paramString3.join(','))
   const genreInput = document.getElementById('genre_ids')
   genreInput.setAttribute('value', genreParams)
-  // return paramString.join(',');
 }
 
 function addQueryParams(choice) {
@@ -385,7 +391,6 @@ const reviewBtn = document.getElementById('review-playlist');
 const createBtn = document.querySelector('.create-playlist-form');
 let questionsArr;
 let questionIndex = 0;
-
 let queryParams = {
   "vote_count_gte": 100,
 };
@@ -465,43 +470,20 @@ $('.carousel .carousel-item').each(function(){
 if (movieCarousel) {
   const moviePlaylist = [];
   let movieIdStrings = '';
-  // adds hidden input field to form
-  // const chosenMovie = document.createElement('input');
-  // chosenMovie.setAttribute('type', 'hidden')
-  // chosenMovie.setAttribute('name', 'movieIdString');
 
+  // listen for clicks on movie posters
   movieCarousel.addEventListener('click', (e) => {
-    // console.log(e)
     const pParentEl = e.target.parentElement;
     const childNode = pParentEl.firstElementChild;
     const imgNode = childNode.firstElementChild;
 
-
     if (imgNode.nodeName.toLowerCase() === 'img') {
-      // const movieId = imgNode.alt;
-
+      // build up string to pass into playlist model for parsing later
       movieIdStrings += imgNode.alt + ','
-      console.log(movieIdStrings)
 
       document.getElementById('movieIdString').setAttribute('value', movieIdStrings);
 
-      // // adds hidden input field to form
-      // const chosenMovie = document.createElement('input');
-      // chosenMovie.setAttribute('type', 'hidden')
-      // chosenMovie.setAttribute('name', 'movieIDs');
-
-
-      // chosenMovie.setAttribute('value', movieId);
-      // document.querySelector('.create-playlist-form').appendChild(chosenMovie);
-    
-      // adds movie to list for review
-      // if (movieIdStrings.indexOf(imgNode.alt + ',') === -1) {
-      //   // moviePlaylist.push(imgNode.alt);
-      //   const addedMovie = document.createElement('img')
-      //   addedMovie.setAttribute('src', imgNode.currentSrc)
-      //   addedMovie.setAttribute('alt', imgNode.alt)      
-      //   document.querySelector('.chosen-movies').appendChild(addedMovie);
-      // }
+      // adds movie if it hasn't already been selected
       if (!moviePlaylist.includes(imgNode.alt)) {
         moviePlaylist.push(imgNode.alt);
         const addedMovie = document.createElement('img')
@@ -510,17 +492,6 @@ if (movieCarousel) {
         document.querySelector('.chosen-movies').appendChild(addedMovie);
       }
     }
-
-  //   async function setMovieAttribute() {
-  //     let movieIdString = document.getElementById('movieIdString');
-  //     let createPlaylist = document.querySelector('.create-playlist');
-  //     movieIdString.setAttribute('value', movieId);
-  //     createPlaylist.addEventListener('click', async () => {
-  //         await setMovieAttribute();
-  //     }) 
-  // }
-    }
-
-  )
+  })
 }
 
