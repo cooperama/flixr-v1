@@ -15,11 +15,20 @@
   </div>
 
   <div class="form-group">
-  <% playlist.movieIDs.forEach((movie, i) => { %>
-    <label for="movie-<%= i + 1 %>"><%= movie.title %></label>
-    <input type="checkbox" id="movie-<%= i + 1 %>" name="movie-<%= i + 1 %>" checked>
+    <!-- push movie IDs into this input field -->
+    <input type="hidden" id="movie-choices" name="movieChoices" />
+
+  <% movies.forEach((movie, i) => { %>
+    <label for="movie-<%= i %>"><%= movie.title %></label>
+    <input type="checkbox" class="movie-id-checkbox" id="movie-<%= i %>" name="<%= playlist.movieIDs[i] %>" checked />
   <% }) %>
   </div>
+
+  <input type="submit" id="update-playlist" onClick="editHelper.updatePlaylistMovies()" value="edit playlist" />
+
+
+  <!-- call -->
+  <% editHelper.updatePlaylistMovies() %> 
 
 </form>
 
