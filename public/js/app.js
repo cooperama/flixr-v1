@@ -347,6 +347,7 @@ function getTopGenres(genreCountObj) {
 
 function addQueryParams(choice) {
   const langInput = document.getElementById('language')
+  const voteInput = document.getElementById('vote_average_gte')
   switch (choice) {
     case 'Las Vegas':
     case 'London':
@@ -360,7 +361,6 @@ function addQueryParams(choice) {
       break;
     case 'witty humor':
     case 'dolphin':
-      const voteInput = document.getElementById('vote_average_gte')
       voteInput.setAttribute('value', 7.3)
       break;
     case 'dine-in':
@@ -434,6 +434,7 @@ if (quizletEl) {
   
       getTopGenres(genreCount)
   
+      // set object counters back to original state
       genreIdsArr.forEach(genre => genreCount[genre] = 0)
       questionIndex = 0;
       queryParams = {"vote_count_gte": 100};
