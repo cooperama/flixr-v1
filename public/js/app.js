@@ -1,6 +1,5 @@
 // -------------- Genre Tracking Objects
-​
-​
+
 const genreCount = {
   28: 0,
   12: 0,
@@ -280,8 +279,7 @@ const comparisonOptions = [
   ['bowling', 'laser tag'],
   ['hiking', 'sailing']
 ];
-​
-​
+
 // -------------- Search Criteria Functions
 function randomIndexGenerator(arr) {
   return Math.floor(Math.random() * arr.length);
@@ -377,13 +375,25 @@ function addQueryParams(choice) {
       break;
   }
 }
-​
+
+
+// -------------- Functions
+
 function confirmDelete() {
   document.getElementById('delete-button').classList.add('hide-content');
   document.getElementById('confirm-delete-button').classList.remove('hide-content');
 }
-​
-​
+
+// https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+async function confirmAdd() {
+  movieAlertH2.innerText = 'movie added!';
+  await sleep(1000);
+  movieAlertH2.innerText = 'click a movie to add it to your playlist';
+}
+
 // -------------- Event Listeners
 const quizletEl = document.querySelector('.quizlet');
 const startQuizBtn = document.querySelector('.start-quiz');
@@ -391,13 +401,13 @@ const genreIdsArr = Object.keys(genreCount);
 const movieCarousel = document.getElementById('movieCarousel');
 const reviewBtn = document.getElementById('review-playlist');
 const createBtn = document.querySelector('.create-playlist-form');
+const movieAlertH2 = document.getElementById('added-movie-alert');
 let questionsArr;
 let questionIndex = 0;
 let queryParams = {
   "vote_count_gte": 100,
 };
-​
-​
+
 if (startQuizBtn) {
   startQuizBtn.addEventListener('click', () => {
     questionsArr = generateQuestionnaire();
@@ -442,6 +452,7 @@ if (quizletEl) {
 if (reviewBtn) {
   reviewBtn.addEventListener('click', () => {
     createBtn.classList.toggle('display-content');
+    // fix this stuffffffffff (styles.css classes)
     document.querySelector('.movies-display').classList.toggle('hide-content');
     document.querySelector('.review-button').classList.toggle('hide-content');
     document.querySelector('.review-movies').classList.toggle('display-content');
@@ -451,7 +462,7 @@ if (reviewBtn) {
 ​
 ​
 // -------------- Movie Recommendations Carousel
-$('.carousel .carousel-item').each(function(){
+$('#movieCarousel .carousel-item').each(function(){
   var minPerSlide = 3;
   var next = $(this).next();
   if (!next.length) {
@@ -468,13 +479,14 @@ $('.carousel .carousel-item').each(function(){
       next.children(':first-child').clone().appendTo($(this));
     }
 });
-​
+
 if (movieCarousel) {
   const moviePlaylist = [];
   let movieIdStrings = '';
 ​
   // listen for clicks on movie posters
   movieCarousel.addEventListener('click', (e) => {
+
     const pParentEl = e.target.parentElement;
     const childNode = pParentEl.firstElementChild;
     const imgNode = childNode.firstElementChild;
@@ -486,6 +498,22 @@ if (movieCarousel) {
       document.getElementById('movieIdString').setAttribute('value', movieIdStrings);
 ​
       // adds movie if it hasn't already been selected
+
+    const imgNode = e.target.parentElement.firstElementChild.firstElementChild;
+    // const pParentEl = e.target.parentElement;
+    // const childNode = pParentEl.firstElementChild;
+    // const imgNode = childNode.firstElementChild;
+
+    if (imgNode.nodeName.toLowerCase() === 'img') {
+      // build up string to pass into playlist model for parsing later
+      movieIdStrings += imgNode.alt + ','
+      document.getElementById('movieIdString').setAttribute('value', movieIdStrings);
+
+      // alert user that the movie they clicked was added
+      confirmAdd();
+
+      // ensures clicked movies are only added once
+
       if (!moviePlaylist.includes(imgNode.alt)) {
         moviePlaylist.push(imgNode.alt);
         const addedMovie = document.createElement('img')
