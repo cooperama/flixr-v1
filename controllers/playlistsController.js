@@ -60,6 +60,7 @@ router.put('/:id', (req, res) => {
     // Will need to revisit for views implementation
     playlist.save();
 
+    res.render(`/playlists/${req.params.id}`);
     const context = {
       playlist,
     }
