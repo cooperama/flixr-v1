@@ -1,6 +1,4 @@
 <%- include('../partials/header.ejs') %>
-
-
 <div class="container text-center my-3 movies-display">
   <h2 class="font-weight-light" id="added-movie-alert">click a movie to add it to your playlist</h2>
   <div class="row mx-auto my-auto">
@@ -10,7 +8,6 @@
     
 <!-- https://www.codeply.com/go/EIOtI7nkP8/bootstrap-carousel-with-multiple-cards -->
 <!-- DEMO 3 Item-->
-
 <% let startPosters = 1;  %>
 <% let firstPoster = 0; %> 
 <% while (!moviesList[firstPoster].poster_path) { %> 
@@ -30,7 +27,6 @@
       </div>
   </div>
 </div>
-
 <% for (let i = startPosters; i < 21; i += 2) { %>
   <% if (moviesList[i].poster_path) { %> 
     <div class="carousel-item">
@@ -65,6 +61,7 @@
 <% } %>
 
         </div>
+        </div>
 
         <a class="carousel-control-prev w-auto" href="#movieCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
@@ -77,14 +74,11 @@
     </div>
   </div>
 </div>
-
 <button class="btn btn-outline-info" id="review-playlist">
   <span class='review-button'>review playlist</span>
   <span class='review-movies'>review movies</span>
 </button>
-
 <a href="../playlists/new">retake quiz</a>
-
 <div class="create-playlist-form">
   <div class="chosen-movies"></div>
   <form action="/playlists" method="POST" class="playlist-form">
@@ -106,7 +100,6 @@
     </div>
     <input type="hidden" name="movieIdString" id="movieIdString" />
     <button class="create-playlist">create playlist</button>
-
   </form>
 </div>
 

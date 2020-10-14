@@ -1,6 +1,5 @@
 // -------------- Genre Tracking Objects
 
-
 const genreCount = {
   28: 0,
   12: 0,
@@ -22,7 +21,7 @@ const genreCount = {
   10752: 0,
   37: 0,
 };
-
+​
 const genreIncrementCount = {
   childhood: {
     12: 2,
@@ -254,7 +253,7 @@ const genreIncrementCount = {
     53: 2,
   },
 }
-
+​
 const comparisonOptions = [
   ['New York', 'Seoul'], 
   ['Bangkok', 'Las Vegas'], 
@@ -281,16 +280,15 @@ const comparisonOptions = [
   ['hiking', 'sailing']
 ];
 
-
 // -------------- Search Criteria Functions
 function randomIndexGenerator(arr) {
   return Math.floor(Math.random() * arr.length);
 }
-
+​
 function generateQuestionnaire() {
   const indices = [];
   const questionsArr = [];
-
+​
   for (let i = 0; i < 10; i++) {
     let index = randomIndexGenerator(comparisonOptions);
     while (indices.includes(index)) {
@@ -304,7 +302,7 @@ function generateQuestionnaire() {
     
     const questionEl = document.createElement('div')
     questionEl.classList.add('options-div');
-
+​
     options.forEach((option, i) => {
       const choice = document.createElement('button')
       choice.innerText = options[i];
@@ -314,14 +312,14 @@ function generateQuestionnaire() {
   }
   return questionsArr;
 }
-
+​
 function incrementGenre(choice) {
   const genresToInc = Object.keys(genreIncrementCount[choice]);
   genresToInc.forEach(genre => {
     genreCount[genre] += genreIncrementCount[choice][genre];
   })
 }
-
+​
 function getTopGenres(genreCountObj) {
   // I know this is WAC af but let's dry it up later
   let paramString = [];
@@ -334,17 +332,17 @@ function getTopGenres(genreCountObj) {
     sortedGenres.push([genre, genreCountObj[genre]]);
   }
   sortedGenres.sort((a, b) => b[1] - a[1]);
-
+​
   paramString.push(sortedGenres[0][0], sortedGenres[1][0])
   paramString2.push(sortedGenres[2][0], sortedGenres[1][0])
   paramString3.push(sortedGenres[2][0], sortedGenres[0][0])
-
+​
   // add top genres into value of input for req.query
   const genreParams = paramString.join(',').concat('|').concat(paramString2.join(',')).concat('|').concat(paramString3.join(','))
   const genreInput = document.getElementById('genre_ids')
   genreInput.setAttribute('value', genreParams)
 }
-
+​
 function addQueryParams(choice) {
   const langInput = document.getElementById('language')
   const voteInput = document.getElementById('vote_average_gte')
@@ -380,6 +378,7 @@ function addQueryParams(choice) {
 
 
 // -------------- Functions
+
 function confirmDelete() {
   document.getElementById('delete-button').classList.add('hide-content');
   document.getElementById('confirm-delete-button').classList.remove('hide-content');
@@ -394,7 +393,6 @@ async function confirmAdd() {
   await sleep(1000);
   movieAlertH2.innerText = 'click a movie to add it to your playlist';
 }
-
 
 // -------------- Event Listeners
 const quizletEl = document.querySelector('.quizlet');
@@ -420,7 +418,7 @@ if (startQuizBtn) {
     inputEls.forEach(inputEl => inputEl.style.display = 'none')
   })
 }
-
+​
 if (quizletEl) {
   quizletEl.addEventListener('click', (e) => {
     const genre = e.target.innerText;
@@ -451,7 +449,7 @@ if (quizletEl) {
     document.querySelector('.options-div').remove();
   })
 }
-
+​
 if (reviewBtn) {
   reviewBtn.addEventListener('click', () => {
     createBtn.classList.toggle('display-content');
@@ -461,10 +459,19 @@ if (reviewBtn) {
     document.querySelector('.review-movies').classList.toggle('display-content');
   })
 }
-
-
-
+​
+​
+​
 // -------------- Movie Recommendations Carousel
+<<<<<<< HEAD
+// $('.carousel .carousel-item').each(function(){
+//   var minPerSlide = 3;
+//   var next = $(this).next();
+//   if (!next.length) {
+//   next = $(this).siblings(':first');
+//   }
+//   next.children(':first-child').clone().appendTo($(this));
+=======
 $('#movieCarousel .carousel-item').each(function(){
   var minPerSlide = 3;
   var next = $(this).next();
@@ -472,24 +479,37 @@ $('#movieCarousel .carousel-item').each(function(){
   next = $(this).siblings(':first');
   }
   next.children(':first-child').clone().appendTo($(this));
+>>>>>>> 1c46541b49a9d603169b43a1c88ce33bbe2a028c
   
-  for (var i=0;i<minPerSlide;i++) {
-      next=next.next();
-      if (!next.length) {
-        next = $(this).siblings(':first');
-      }
+//   for (var i=0;i<minPerSlide;i++) {
+//       next=next.next();
+//       if (!next.length) {
+//         next = $(this).siblings(':first');
+//       }
       
-      next.children(':first-child').clone().appendTo($(this));
-    }
-});
-
+//       next.children(':first-child').clone().appendTo($(this));
+//     }
+// });
 
 if (movieCarousel) {
   const moviePlaylist = [];
   let movieIdStrings = '';
-
+​
   // listen for clicks on movie posters
   movieCarousel.addEventListener('click', (e) => {
+
+    const pParentEl = e.target.parentElement;
+    const childNode = pParentEl.firstElementChild;
+    const imgNode = childNode.firstElementChild;
+​
+    if (imgNode.nodeName.toLowerCase() === 'img') {
+      // build up string to pass into playlist model for parsing later
+      movieIdStrings += imgNode.alt + ','
+​
+      document.getElementById('movieIdString').setAttribute('value', movieIdStrings);
+​
+      // adds movie if it hasn't already been selected
+
     const imgNode = e.target.parentElement.firstElementChild.firstElementChild;
     // const pParentEl = e.target.parentElement;
     // const childNode = pParentEl.firstElementChild;
@@ -504,6 +524,7 @@ if (movieCarousel) {
       confirmAdd();
 
       // ensures clicked movies are only added once
+
       if (!moviePlaylist.includes(imgNode.alt)) {
         moviePlaylist.push(imgNode.alt);
         const addedMovie = document.createElement('img')
@@ -514,4 +535,3 @@ if (movieCarousel) {
     }
   })
 }
-
