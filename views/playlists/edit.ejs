@@ -1,12 +1,40 @@
 <%- include('../partials/header.ejs') %>
 
 
+
+<style>
+  
+#edit-movies-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.movies-div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movies-div img {
+  width: 300px;
+}
+
+.movie-id-checkbox {
+  display: none;
+}
+.movie-id-checkbox:checked + label {
+  border: 3px dotted red;
+}
+
+</style>
+
 <h2><%= playlist.title %></h2>
 
-<form action="/playlists/<%= playlist._id %>?_method=PUT " method="POST">
+<form id="edit-movies-form" action="/playlists/<%= playlist._id %>?_method=PUT " method="POST">
   
   <div class="form-group">
-    <label for="title">Playlist Name</label>
     <input type="text" id="title" name="title" value="<%= playlist.title %>">
   </div>
 
@@ -14,23 +42,21 @@
     <textarea name="description" id="description" cols="30" rows="10"><%= playlist.description %></textarea>
   </div>
 
-  <div class="form-group">
-    <input type="hidden" id="movie-choices" name="movieChoices" />
-
+  <div class="form-group movies-div">
   <% movies.forEach((movie, i) => { %>
-    <label for="movie-<%= i %>"><%= movie.title %></label>
+    <div>
+
     <input type="checkbox" class="movie-id-checkbox" id="movie-<%= i %>" name="<%= playlist.movieIDs[i] %>" checked />
+    <label class="selected-movie-image" for="movie-<%= i %>"><img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<% movie.title %>"></label>
+
+  </div>
   <% }) %>
   </div>
 
+  <input type="hidden" id="movie-choices" name="movieChoices" />
   <input type="submit" id="update-playlist" onclick="updatePlaylistMovies()" value="edit playlist" />
 
-
-
-
 </form>
-
-
 
 
 

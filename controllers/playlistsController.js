@@ -3,9 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 const db = require('../models');
-// require the app.js or new file for updating playlist, render as context with edit page
-// const editHelper = require('../editHelper');
-// const editHelper = require('../public/js/editHelper.js');
 
 
 // ----------------- GET index
@@ -47,32 +44,23 @@ router.post('/', (req, res) => {
       });
       foundPlaylist.save();
     })
-    // 
     res.redirect(`/playlists/${playlist._id}`);
-    // res.redirect(`/playlists/${playlist._id}/movies`);
   })
 })
 
 
-// -------------------------------------------------
-// -------------------------------------------------
-// -------------------------------------------------
 // // ----------------- PUT (UPDATE & EDIT) movieIds for existing playlists
 router.put('/:playlistId', (req, res) => {
   db.Playlist.findById(req.params.playlistId, (err, playlist) => {
     //This will contain our array of movies the user has chosen;
 
     const newMovieIds = [];
-    // movieChoices is a string to be parsed
     let parsedMovieIds = req.body.movieChoices.split(',')
     parsedMovieIds = parsedMovieIds.slice(0, parsedMovieIds.length - 1);
-
     parsedMovieIds.forEach(movieId => {
       newMovieIds.push(movieId);
     });
-
     playlist.movieIDs = newMovieIds;
-    
     playlist.save();
 
     const context = {
@@ -85,9 +73,6 @@ router.put('/:playlistId', (req, res) => {
 
 
 
-// -------------------------------------------------
-// -------------------------------------------------
-// -------------------------------------------------
 // Only the user the playlist belongs to should be able to edit the playlist
 // ----------------- GET routes to edit playlist page
 router.get('/:playlistId/edit', async (req, res) => {
@@ -110,32 +95,27 @@ router.get('/:playlistId/edit', async (req, res) => {
   const context = {
     movies: movieDetails,
     playlist: playlist,
-    // editing helper function JS file
-    // editHelper: editHelper
   }
   res.render('playlists/edit', context);
 })
 
 
 
-// ----------------- GET playlists for existing users
+// // ----------------- GET playlists for existing users
 
-router.get('/users/:userId', async (req, res) => {
-  let playlists = await db.Playlist.find({ user: req.params.userId})
-    const context = {
-      playlist: playlists,
-    }
-    console.log(playlists)
-    // res.render(`playlists/show`, context);
-})
-
-
+// router.get('/users/:userId', async (req, res) => {
+//   let playlists = await db.Playlist.find({ user: req.params.userId})
+//     const context = {
+//       playlist: playlists,
+//     }
+//     console.log(playlists)
+//     // res.render(`playlists/show`, context);
+// })
 
 
 
 
 // ----------------- GET (SHOW) - movie details (description, poster path, voting average)
-// playlist/ids/movies
 router.get('/:playlistId', async (req, res, next) => {
   let playlist = await db.Playlist.findById(req.params.playlistId);
   let movieDetails = [];

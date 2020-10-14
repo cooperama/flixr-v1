@@ -16,7 +16,7 @@ router.get('/recommendations', async (req, res) => {
             "release_date.gte": req.query.release_date_gte,
             "with_runtime.gte": req.query.with_runtime_gte,
             "vote_count.gte": req.query.vote_count_gte,
-            adult: false,
+            include_adult: false,
         }
     })
     const context = {
