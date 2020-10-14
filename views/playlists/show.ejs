@@ -7,22 +7,16 @@
   <p><%= playlist.description %></p>
 <% } %> 
 
-<div class="playlist-list">
-  
-  <ul>
+<ul>
+  <% for( let i = 0; i < playlist.movieIDs.length; i++ ) { %>
+    <li><%= playlist.movieIDs[i] %></li>
+  <% } %>
+</ul>
 
 
-  <% playlist.movieIDs.forEach(movieID => { %>
-    
-    <li><%= movieId.title %></li>
-
-  <% }) %>
-
-  </ul>
-
-</div>
-
-
+<form action="/playlists/<%= playlist._id %>/?_method=DELETE" method="POST">
+  <button type="submit">delete playlist</button>
+</form>
 
 
 

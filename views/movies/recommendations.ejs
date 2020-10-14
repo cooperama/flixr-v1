@@ -11,12 +11,11 @@
 <!-- https://www.codeply.com/go/EIOtI7nkP8/bootstrap-carousel-with-multiple-cards -->
 <!-- DEMO 3 Item-->
 
-
 <% let startPosters = 1;  %>
 <% let firstPoster = 0; %> 
 <% while (!moviesList[firstPoster].poster_path) { %> 
-  startPosters++;
-  firstPoster++
+  <% startPosters++; %>
+  <% firstPoster++ %>
 <% } %> 
 <div class="carousel-item active">
   <div class="col-md-4">
