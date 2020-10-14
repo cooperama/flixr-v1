@@ -9,5 +9,28 @@
 
 
 
+<div class="wrapper d-flex align-items-stretch">
+  <nav id="sidebar" class="active">
+    <h1><a href="index.html" class="logo">FLIXR</a></h1>
+    <ul class="list-unstyled components mb-5">
+      <li class="active">
+        <a href="/dashboard"><span class="fa fa-home"></span>Home</a>
+      </li>
+      <li>
+          <a href="/playlists/new"><span class="fa fa-user"></span>Create Playlist</a>
+      </li>
+      <li>
+        <a href="/playlists/show"><span class="fa fa-sticky-note"></span>My Playlist</a>
+      </li>
+      <li>
+        <a href="/users/logout"><span class="fa fa-cogs"></span>Logout</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- Page Content  -->
+  <div id="content" class="p-4 p-md-5">
+    <h2 class="mb-4">Welcome <%= user.name %></h2>
+  </div>
+</div>
 
 <%- include('partials/footer.ejs') %>
