@@ -1,7 +1,5 @@
 <%- include('../partials/header.ejs') %>
 
-
-
 <style>
   
 #edit-movies-form {
@@ -46,10 +44,10 @@
   <% movies.forEach((movie, i) => { %>
     <div>
 
-    <input type="checkbox" class="movie-id-checkbox" id="movie-<%= i %>" name="<%= playlist.movieIDs[i] %>" checked />
-    <label class="selected-movie-image" for="movie-<%= i %>"><img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<% movie.title %>"></label>
+      <input type="checkbox" class="movie-id-checkbox" id="movie-<%= i %>" name="<%= playlist.movieIDs[i] %>" checked />
+      <label class="selected-movie-image" for="movie-<%= i %>"><img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<% movie.title %>"></label>
 
-  </div>
+    </div>
   <% }) %>
   </div>
 
