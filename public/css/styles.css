@@ -1,3 +1,7 @@
+/*===============*/
+/* Global Styles */
+/*===============*/
+
 :root {
   --bg-gradient: linear-gradient(269deg, #1b1a2e, #190c3e);
   --bg-dark: hsl(261, 92%, 5%);
@@ -12,22 +16,118 @@
 body {
   overflow-x: hidden;
   padding-top: 55px;
-  background: linear-gradient(269deg, #1b1a2e, #190c3e) !important;
+  background: linear-gradient(56deg, #2e2d4d, #190c3e);
+  background-size: 400% 400%;
+  -webkit-animation: gradientAnimated 57s ease infinite;
+  -moz-animation: gradientAnimated 57s ease infinite;
+  animation: gradientAnimated 57s ease infinite;
 }
 
 h2 {
   color: white;
 }
 
-.movie-lp {
-  left: 5%;
+/*==============*/
+/* Login Screen */
+/*==============*/
+
+.flixr-logo {
+  margin-left: 7.1rem !important;
+  width: 150px;
+  height: 150px;
+  font-size: 3rem;
+  color: white;
+  border-color: #8b51f5;
+  border-radius: 50%;
+  border-top-style: groove;
+  line-height: 150px;
+  border-bottom: groove;
+  text-align: center;
 }
+
+.app-desc {
+  margin-top: 5rem;
+}
+
+.login-message {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.login-form {
+  width: 300px;
+}
+
+.login-btn {
+  color: #fff;
+  background-color: #5125AD;
+  border-color: #5125AD;
+  margin-top: 2rem !important;
+}
+
+.login-btn:hover {
+  color: #e8ddfd;
+  background-color: #1B1633;
+  border-color:#e8ddfd;
+}
+
+.register {
+  text-align: center;
+  font-size: smaller;
+}
+
+.login-entry {
+  width: 300px;
+  border: none;
+  padding: 10px 10px !important;
+  border-color: #fff !important;
+  border-bottom: solid;
+  outline: none !important;
+  padding: 10px 0;
+  background-color: transparent !important;
+}
+
+.login-group {
+  margin-bottom: 1.2rem;
+}
+
+.sign-up {
+  color: #6334E3;
+}
+
+.sign-up:hover {
+  color: #fff;
+}
+
+.sign-up:visited {
+    color: #6334E3;
+}
+
+/*==============*/
+/*  Dashboard   */
+/*==============*/
+
+.dashboard-sb {
+  height: 100vh;
+}
+
+.card-header:first-child, .nav-tabs {
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(to right, #373085, #F3F2FF, #373085);
+  border-image-slice: 1
+}
+
+.movie-lp {
+  margin-top: 5rem !important;
+}
+
 .lp-explorer:nth-of-type(1) {
   color: var(--bg-md-light);
 }
+
 .lp-explorer:nth-of-type(2) {
   color: #6334E3;
 }
+
 .lp-explorer:nth-of-type(3) {
   color: #5125AD;
 }
@@ -85,7 +185,11 @@ i.icon-white {
 }
 
 main.col.px-4.px-lg-5.pt-5 {
-  background: linear-gradient(269deg, #1b1a2e, #190c3e) !important;
+  background: linear-gradient(56deg, #2e2d4d, #190c3e);
+  background-size: 400% 400%;
+  -webkit-animation: gradientAnimated 57s ease infinite;
+  -moz-animation: gradientAnimated 57s ease infinite;
+  animation: gradientAnimated 57s ease infinite;
 }
 
 .card.text-light.shadow-sm.h-100 {
@@ -142,6 +246,51 @@ main.col.px-4.px-lg-5.pt-5 {
 textarea {
   width: 500px;
 }
+/*=================================*/
+/* Add movies to playlist section  */
+/*=================================*/
+.carousel-control-prev {
+  left: 9rem;
+}
+
+.movie-rec {
+  background: rgba(90, 78, 217, 1);
+	box-shadow: 0 0 0 0 rgba(90, 78, 217, 1);
+	animation: pulse-frame 2s infinite;
+}
+
+@keyframes pulse-frame {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(142, 68, 173, 0.7);
+	}
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(142, 68, 173, 0);
+	}
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(142, 68, 173, 0);
+	}
+}
+
+/* Will need a few media queries to be absolutely responsive */
+
+#review-playlist {
+  margin: 0 2rem !important;
+}
+
+.retake-btn {
+  color: #05AFF2;
+  border-color: #05AFF2;
+}
+
+.retake-btn:hover {
+  color: #fff;
+  background-color: #05AFF2;
+  border-color: #fff;
+}
+
 
 .review-movies {
   display: none;
@@ -267,4 +416,20 @@ transform: translateX(0);
   .navbar-brand {
     display: none !important; 
   }
+}
+
+@-webkit-keyframes gradientAnimated {
+  0%{background-position:96% 0%}
+  50%{background-position:5% 100%}
+  100%{background-position:96% 0%}
+}
+@-moz-keyframes gradientAnimated {
+  0%{background-position:96% 0%}
+  50%{background-position:5% 100%}
+  100%{background-position:96% 0%}
+}
+@keyframes gradientAnimated {
+  0%{background-position:96% 0%}
+  50%{background-position:5% 100%}
+  100%{background-position:96% 0%}
 }

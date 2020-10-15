@@ -426,6 +426,7 @@ function generateQuestionnaire() {
 
     options.forEach((option, i) => {
       const choice = document.createElement('button')
+      choice.classList.add("btn btn-outline-primary")
       choice.innerText = options[i];
       questionEl.appendChild(choice);
     })
@@ -642,7 +643,6 @@ $('#movieCarousel .carousel-item').each(function(){
       next.children(':first-child').clone().appendTo($(this));
     }
 });
-
 
 if (movieCarousel) {
   const moviePlaylist = [];

@@ -6,7 +6,7 @@
     <!-- Bootstrap Styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat&display=swap" rel="stylesheet">
     <!-- Main CSS -->
     <link rel="stylesheet" href="/css/styles.css">
     <!-- Materialize Icons -->
@@ -23,45 +23,45 @@
 <body>
 
 
-<div class="container movie-lp">
+<div class="container-fluid movie-lp ml-5">
   <div class="row">
-    <div class="col-8">
+    <div class="col-8 app-desc">
       <div class="row mr-2 mt-5">
         <h2>A cinematic search engine perfect for <span class="lp-explorer">experimenters</span>, <span class="lp-explorer">explorers</span>, or simply, for those who are <span class="lp-explorer">lost.</span></h2>
       </div>
-      <div class="row mr-2 mt-2">
-        <p class="text-light">Flixr takes an unorthodox approach when it comes to creating your next movie binge-list. Our method of generating movie choices are powered solely by how you answer a simple "this" or "that" quizlet.</p>
-        <p class="text-light">We're here to do the work and free you from decision-making anxiety. As a matter of fact, by the time you're done with your quizlet, your popcorn will be ready to eat and your playlist will be prepared to be used and shared with friends!</p>
+      <div class="row mr-2 mt-5 ml-2">
+        <p class="text-light login-message">Flixr takes an unorthodox approach when it comes to creating your next movie binge-list. Our method of generating movie choices are powered solely by how you answer a simple "this" or "that" quizlet.</p>
+        <p class="text-light login-message">We're here to do the work and free you from decision-making anxiety. As a matter of fact, by the time you're done with your quizlet, your popcorn will be ready to eat and your playlist will be prepared to be used and shared with friends!</p>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 mt-5">
       <!-- logo -->
-      <img src="/images/flixr_logo.png" alt="Flixr Logo">
-      <div class="row ml-4">
-        <form action="/users/login" method="POST">
-          <div class="form-group">
-            <label class="text-light mt-4" for="email">Email</label>
+      <div class="flixr-logo"> FLIXR </div>
+      <div class="row ml-5">
+        <form action="/users/login" method="POST" class="login-form">
+          <div class="form-group login-group">
+            <label class="text-light mt-4" for="email"></label>
             <input
               type="email"
               id="email"
               name="email"
-              class="form-control"
-              placeholder="Enter Email"
+              class="form-control login-entry" 
+              placeholder="email"
             />
           </div>
-          <div class="form-group">
-            <label class="text-light" for="password">Password</label>
+          <div class="form-group login-group">
+            <label class="text-light" for="password"></label>
             <input
               type="password"
               id="password"
               name="password"
-              class="form-control"
-              placeholder="Enter Password"
+              class="form-control login-entry"
+              placeholder="password"
             />
           </div>
-          <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
+          <button type="submit" class="btn btn-info btn-block mt-4 login-btn">LOG IN</button>
           <p class="lead mt-4 text-light register">
-            No Account? <a href="/users/register">Register</a>
+            Don't have an account? <a href="/users/register" class="sign-up">Sign up</a>
           </p>
         </form>
       </div>
