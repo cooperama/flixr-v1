@@ -8,57 +8,27 @@
     
 <!-- https://www.codeply.com/go/EIOtI7nkP8/bootstrap-carousel-with-multiple-cards -->
 <!-- DEMO 3 Item-->
-<% let startPosters = 1;  %>
-<% let firstPoster = 0; %> 
-<% while (!moviesList[firstPoster].poster_path) { %> 
-  <% startPosters++; %>
-  <% firstPoster++ %>
-<% } %> 
-<div class="carousel-item active">
-  <div class="col-md-4">
-      <div class="card card-body">
+
+<% moviesList.forEach((movie, i) => { %>
+  <% if (i === 0) { %> 
+    <div class="carousel-item active">
+    <% } else { %> 
+      <div class="carousel-item">
+    <% } %> 
+    <div class="col-md-4">
+        <div class="card card-body">
           <div class="hover hover-3 text-white rounded">
-            <img class="img-fluid" src="https://image.tmdb.org/t/p/w500<%= moviesList[firstPoster].poster_path %>" alt="<%= moviesList[firstPoster].id %>" />
+            <img class="img-fluid" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.id %>" />
             <div class="hover-overlay"></div>
             <div class="hover-3-content px-5 py-4">
-              <p class="hover-3-description small text-uppercase mb-0"><%= moviesList[firstPoster].overview %></p>
-            </div>
+            <p class="hover-3-description small text-uppercase mb-0"><%= movie.overview %></p>
           </div>
-      </div>
-  </div>
-</div>
-<% for (let i = startPosters; i < 21; i += 2) { %>
-  <% if (moviesList[i].poster_path) { %> 
-    <div class="carousel-item">
-        <div class="col-md-4">
-            <div class="card card-body">
-                <div class="hover hover-3 text-white rounded">
-                  <img class="img-fluid" src="https://image.tmdb.org/t/p/w500<%= moviesList[i].poster_path %>" alt="<%= moviesList[i].id %>" />
-                  <div class="hover-overlay"></div>
-                  <div class="hover-3-content px-5 py-4">
-                    <p class="hover-3-description small text-uppercase mb-0"><%= moviesList[i].overview %></p>
-                  </div>
-                </div>
-            </div>
         </div>
-    </div>
-    <% } %> 
-    <% if (moviesList[i+1] && moviesList[i + 1].poster_path) { %> 
-    <div class="carousel-item">
-        <div class="col-md-4">
-            <div class="card card-body">
-              <div class="hover hover-3 text-white rounded">
-                <img class="img-fluid" src="https://image.tmdb.org/t/p/w500<%= moviesList[i+1].poster_path %>" alt="<%= moviesList[i+1].id %>" />
-                <div class="hover-overlay"></div>
-                <div class="hover-3-content px-5 py-4">
-                <p class="hover-3-description small text-uppercase mb-0"><%= moviesList[i + 1].overview %></p>
-              </div>
-            </div>
-          </div>
       </div>
     </div>
-  <% } %>
-<% } %>
+    </div>
+<% }) %>
+
 
         </div>
         </div>
