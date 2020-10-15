@@ -14,7 +14,10 @@ router.get('/dashboard', ensureAuthenticated, async (req, res) => {
   let recentPlaylists = await db.Playlist.find().sort({createdAt: -1}).limit(5);
   console.log(recentPlaylists)
   db.Playlist.find({user: req.user._id}, (err, allPlaylists) => {
-    if (err) return console.log(err);
+    if (err) {
+      res.render('404');
+      return console.log(err);
+    }
     const context = {
         userPlaylists: allPlaylists,
         user: req.user,
