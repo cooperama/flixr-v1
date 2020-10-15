@@ -426,7 +426,7 @@ function generateQuestionnaire() {
 
     options.forEach((option, i) => {
       const choice = document.createElement('button')
-      choice.classList.add("btn btn-outline-primary")
+      choice.classList.add("btn", "btn-outline-primary")
       choice.innerText = options[i];
       questionEl.appendChild(choice);
     })
@@ -589,6 +589,8 @@ if (quizletEl) {
     console.log('chosen option: ', userChoice);
     if (genreIncrementCount.hasOwnProperty(userChoice)) {
       incrementGenre(userChoice);
+      console.log('------------------')
+      console.log(genreCount)
     }
     addQueryParams(userChoice);
 
