@@ -12,8 +12,7 @@
 body {
   overflow-x: hidden;
   padding-top: 55px;
-  background: var(--bg-gradient) !important;
-  /* background: linear-gradient(269deg, #1b1a2e, #190c3e) !important; */
+  background: linear-gradient(269deg, #1b1a2e, #190c3e) !important;
 }
 
 h2 {
@@ -41,12 +40,15 @@ h2 {
 
 .fixed-top {
   max-width: 8.333333%;
-  background-color: var(--bg-dark) !important;
-  /* background-color: #090118 !important; */
+  background-color: #090118 !important;
 }
 
 a.d-lg-none.d-inline.mr-3 {
   color: #fff !important;
+}
+
+.quiz-desc {
+  text-align: center;
 }
 
 .vertical-navbar {
@@ -55,8 +57,7 @@ a.d-lg-none.d-inline.mr-3 {
 }
 
 .bg-black {
-  background-color: var(--bg-dark);
-  /* background-color: #090118; */
+  background-color: #090118;
 }
 
 i.icon-white {
@@ -84,23 +85,30 @@ i.icon-white {
 }
 
 main.col.px-4.px-lg-5.pt-5 {
-  background: var(--bg-gradient) !important;
-  /* background: linear-gradient(269deg, #1b1a2e, #190c3e) !important; */
+  background: linear-gradient(269deg, #1b1a2e, #190c3e) !important;
 }
 
 .card.text-light.shadow-sm.h-100 {
   background-color: rgba(139, 81, 245, .34);
 }
+
 .btn-outline-secondary {
-  color: var(--bg-md-light) !important;
-  border-color: var(--bg-md-light) !important;
-  /* color: #8b51f5 !important;
-  border-color: #8b51f5 !important; */
+  color: #8b51f5 !important;
+  border-color: #8b51f5 !important;
 }
 
 .btn-outline-secondary:hover {
-  background-color: var(--bg-light) !important;
-  /* background-color: #e8ddfd !important; */
+  background-color: #e8ddfd !important;
+}
+
+.btn-outline-primary {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #8b51f5;
+  border-color: #fff;
 }
 
 .pt-2, .py-2 {
@@ -109,6 +117,15 @@ main.col.px-4.px-lg-5.pt-5 {
 
 .row {
   display: -webkit-box !important;
+}
+
+.container-fluid.px-0.flex-grow-1.quizlet {
+  height: 100vh;
+  position: fixed;
+}
+
+.p-4 {
+  padding: .5rem 1.5rem !important;
 }
 
 /* ***************** Movies/Recommendations Page */
