@@ -120,6 +120,18 @@ dl, ol, ul {
     color: #6334E3;
 }
 
+
+.register-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.astronaut {
+  filter: saturate(2);
+}
+
+
 /*==============*/
 /*  Dashboard   */
 /*==============*/
@@ -403,9 +415,8 @@ background-color: transparent;
 .edit-movies-div {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   flex-wrap: wrap;
-  align-self: stretch;
+  /* align-self: stretch; */
   margin-left: 2rem;
 }
 

@@ -559,7 +559,7 @@ function sleep(ms) {
 async function confirmAdd() {
   console.log('added movie')
   movieAlertH2.innerText = 'movie added!';
-  await sleep(1000);
+  await sleep(500);
   movieAlertH2.innerText = 'click a movie to add it to your playlist';
 }
 
