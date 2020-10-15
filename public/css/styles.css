@@ -27,6 +27,10 @@ h2 {
   color: white;
 }
 
+dl, ol, ul {
+  margin-bottom: 0;
+}
+
 /*==============*/
 /* Login Screen */
 /*==============*/
@@ -105,11 +109,6 @@ h2 {
 /*==============*/
 /*  Dashboard   */
 /*==============*/
-
-.dashboard-sb {
-  height: 100vh;
-}
-
 .card-header:first-child, .nav-tabs {
   border-bottom: 1px solid transparent;
   border-image: linear-gradient(to right, #373085, #F3F2FF, #373085);
@@ -305,6 +304,164 @@ textarea {
   width: 30%;
 }
 
+
+/*=============*/
+/*  Show Page  */
+/*=============*/
+.show-sidebar-container {
+  height: 100vh;
+}
+
+.show-gallery-container {
+  height: 100%;
+}
+.playlist-gallery {
+  list-style-type: none;
+  height: 100%;
+  overflow: hidden;
+}
+.playlist-gallery li {
+  float: left;
+  height: 100%;
+  width: 400px;
+  background: #2E4053;
+}
+.playlist-gallery .flip {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+
+  -webkit-perspective: 2000px;
+  -moz-perspective: 2000px;
+  perspective: 2000px;
+}
+.playlist-gallery li:hover .front-side {
+  opacity: 0;
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.playlist-gallery li:hover .back-side {
+  background: #000;
+  opacity: 1;
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.playlist-gallery .front-side,
+.playlist-gallery .back-side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility:  hidden;
+  -moz-backface-visibility:  hidden;
+  backface-visibility:  hidden;
+
+  -webkit-transition: transform 0.4s ease-out, opacity 0.3s ease-out;
+  -moz-transition: transform 0.4s ease-out, opacity 0.3s ease-out;
+  transition: transform 0.4s ease-out, opacity 0.3s ease-out;
+}
+.playlist-gallery .front-side {
+  opacity: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.playlist-gallery .back-side {
+  opacity: 0;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.playlist-gallery .back-side > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.playlist-gallery .movie-loader {
+  border-top-color: #6334E3;
+  border-left-color: #6334E3;
+}
+
+.playlist-gallery .text h3 {
+  color: #6334E3;
+}
+
+.playlist-gallery .text h3:after {
+  background: #6334E3;
+}
+
+.playlist-gallery .playlist-content {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 25px 20px;
+}
+
+.playlist-gallery li:hover .text {
+  opacity: 1;
+  visibility: visible;
+  max-height: 2000px;
+  -webkit-transition: opacity .3s ease-in 1.5s, max-height .1s ease 1.5s;
+  -moz-transition: opacity .3s ease-in 1.5s, max-height .1s ease 1.5s;
+  transition: opacity .3s ease-in 1.5s, max-height .1s ease 1.5s;
+}
+.playlist-gallery li:hover .movie-loader {
+  opacity: 1;
+  visibility: visible;
+  -webkit-animation: hide .1s ease-in-out 1.4s forwards, load .75s infinite;
+  -moz-animation: hide .1s ease-in-out 1.4s forwards, load .75s infinite;
+  animation: hide .1s ease-in-out 1.4s forwards, load .75s infinite;
+}
+.playlist-gallery .text {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+}
+.playlist-gallery .playlist-content h3 {
+  position: relative;
+  color: #3498DB;
+  font: normal 30px/1.25 'Open Sans';
+  margin-bottom: 25px;
+}
+.gallery .playlist-content h3:after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -25px;
+  background:rgba(90, 78, 217, .5);
+}
+.playlist-gallery .playlist-content p {
+  margin: 10px 0;
+  color: #ffffff;
+  font-family: 'Alata', sans-serif;
+}
+.playlist-gallery .movie-loader {
+  opacity: 0;
+  visibility: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #3498DB;
+  border-left-color: #3498DB;
+}
 
 /* DEMO 3 */
 /* https://jsfiddle.net/bootstrapious/sqe028y1/ */
