@@ -15,6 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <!-- Main JS -->
   <script src="/js/app.js" defer></script>
+  <script src="moment.js"></script>
   <title>FLIXR</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
     <a data-toggle="collapse" href="#" data-target="#fullmenu" role="button" class="d-lg-none d-inline mr-3">
         <i class="mdi mdi-view-sequential"></i>
     </a>
-    <a class="navbar-brand text-light" href="./">FLIXR</a>
+    <a class="navbar-brand text-light" href="/dashboard">FLIXR</a>
     <ul class="navbar-nav ml-auto">
     </ul>
 </nav>
@@ -33,7 +34,7 @@
                 <div class="col-sm-12 text-center">
                     <div class="sidenav">
                         <a class="nav-link py-2" href="#navTop"><i class="ml-auto mdi mdi-home-outline icon-white"></i></a>
-                        <a class="nav-link py-2" href="#sectionMyPlaylists"><i class="ml-auto mdi mdi-youtube-subscription icon-white"></i></a>
+                        <a class="nav-link py-2" href="/dashboard#sectionMyPlaylists"><i class="ml-auto mdi mdi-youtube-subscription icon-white"></i></a>
                         <a class="nav-link py-2" href="/playlists/new"><i class="ml-auto mdi mdi-plus-circle icon-white"></i></a>
                         <a class="nav-link py-2" href="#sectionSettings"><i class="ml-auto mdi mdi-cog-outline icon-white"></i></a>
                     </div>
@@ -57,6 +58,10 @@
                         </div>
                         <div id="contentSlider3" data-ride="carousel" data-interval="false" class="carousel slide my-auto pointer-event">
                             <div class="carousel-inner rounded-lg">
+                                
+
+
+
                                 <div class="carousel-item active">
                                     <div class="card bg-transparent border-0">
                                         <div class="d-flex align-items-center">
@@ -71,6 +76,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                
+
                                 <div class="carousel-item">
                                     <div class="card bg-transparent border-0">
                                         <div class="d-flex align-items-center">
@@ -103,34 +112,25 @@
                                 </ul>
                                 <div class="tab-content py-4">
                                     <div class="tab-pane active" id="tab1" role="tabpanel">
-                                        <div class="card bg-transparent shadow-sm mb-3">
-                                            <div class="card-body">
-                                                <span class="float-right text-muted small">Playlist Created Timestamp goes here</span>
-                                                <h5 class="card-title">Playlist Name #1</h5>
-                                                <p class="card-text">Playlist Description <a href="#" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View (opens Playlist show page)</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="card bg-transparent shadow-sm mb-3">
-                                            <div class="card-body">
-                                                <span class="float-right text-muted small">Playlist Created Timestamp goes here</span>
-                                                <h5 class="card-title">Playlist Name #2</h5>
-                                                <p class="card-text">Playlist Description <a href="#" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View (opens Playlist show page)</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="card bg-transparent shadow-sm mb-3">
-                                            <div class="card-body">
-                                                <span class="float-right text-muted small">Playlist Created Timestamp goes here</span>
-                                                <h5 class="card-title">Playlist Name #3</h5>
-                                                <p class="card-text">Playlist Description <a href="#" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View (opens Playlist show page)</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="card bg-transparent shadow-sm mb-3">
-                                            <div class="card-body">
-                                                <span class="float-right text-muted small">Playlist Created Timestamp goes here</span>
-                                                <h5 class="card-title">Playlist Name #4</h5>
-                                                <p class="card-text">Playlist Description <a href="#" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View (opens Playlist show page)</a></p>
-                                            </div>
-                                        </div>
+
+
+
+
+<% userPlaylists.forEach(playlist => { %>
+    <div class="card bg-transparent shadow-sm mb-3">
+        <div class="card-body">
+            <span class="float-right text-muted small"><%= moment(playlist.createdAt).format("dddd, MMM Do, YYYY") %></span>
+            <h5 class="card-title"><%= playlist.title %></h5>
+            <% if (playlist.description) { %> 
+                <p class="card-text"><%= playlist.description %>
+                <% } else { %> 
+                <p class="card-text">
+            <% } %> 
+            <a href="/playlists/<%= playlist._id %>" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View Playlist</a></p>
+        </div>
+    </div>
+<% }) %>
+
                                     </div>
                                 </div>
                                 <!-- /tab-content -->
