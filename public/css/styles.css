@@ -18,10 +18,14 @@ body {
   padding-top: 0;
   background: linear-gradient(56deg, #2e2d4d, #190c3e);
   background-size: 400% 400%;
-  overflow: hidden;
   -webkit-animation: gradientAnimated 57s ease infinite;
   -moz-animation: gradientAnimated 57s ease infinite;
   animation: gradientAnimated 57s ease infinite;
+}
+
+.page404 {
+  color: white;
+  margin: auto;
 }
 
 h2 {
@@ -307,6 +311,61 @@ textarea {
 
 
 /*=============*/
+/*  Edit Page  */
+/*=============*/
+
+
+.movie-id-checkbox {
+  display: none;
+}
+
+.movie-id-checkbox:checked + label {
+  border: 3px solid rgba(90, 78, 217, 1);
+}
+
+
+.edit-playlist-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  align-items: center;
+}
+.edit-pl-title-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+#edit-movies-form {
+  margin-top: 2rem;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.edit-movies-div {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  align-self: stretch;
+  margin-left: 2rem;
+}
+
+.selected-movie-div {
+  width: 25%;
+  align-self: center;
+}
+
+.selected-movie-div img {
+  width: 100%;
+}
+
+
+/*=============*/
 /*  Show Page  */
 /*=============*/
 .show-sidebar-container {
@@ -580,6 +639,21 @@ transform: translateX(0);
 /*=========================================*/
 /*        Playlist Gallery Keyframes       */
 /*=========================================*/
+
+@keyframes pulse-frame {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(142, 68, 173, 0.7);
+	}
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(142, 68, 173, 0);
+	}
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(142, 68, 173, 0);
+	}
+}
 
 @-webkit-keyframes gradientAnimated {
   0%{background-position:96% 0%}
