@@ -3,7 +3,7 @@
   <h2 class="font-weight-light" id="added-movie-alert">click a movie to add it to your playlist</h2>
   <div class="row mx-auto my-auto">
     <div id="movieCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
-        <div class="carousel-inner w-100" role="listbox">
+        <div id="movie-rec" class="carousel-inner w-100" role="listbox">
 
     
 <!-- https://www.codeply.com/go/EIOtI7nkP8/bootstrap-carousel-with-multiple-cards -->
@@ -72,18 +72,15 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <button class="btn btn-outline-info" id="review-playlist">
+<div class="row mx-auto my-3 d-flex justify-content-center">
+  <button class="btn btn-outline-secondary" id="review-playlist">
       <span class='review-button'>review playlist</span>
       <span class='review-movies'>review movies</span>
     </button>
-    <a href="../playlists/new">retake quiz</a>
+    <button class="btn btn-outline-warning retake-btn" href="../playlists/new">retake quiz</button>
   </div>
 </div>
+  </div>
 
 <div class="container create-playlist-form">
   

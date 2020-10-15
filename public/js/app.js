@@ -483,7 +483,6 @@ $('#movieCarousel .carousel-item').each(function(){
     }
 });
 
-
 if (movieCarousel) {
   const moviePlaylist = [];
   let movieIdStrings = '';

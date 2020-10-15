@@ -76,9 +76,9 @@ h2 {
 }
 
 .login-entry {
-  width: 260px;
+  width: 300px;
   border: none;
-  padding: 10px 0;
+  padding: 10px 10px !important;
   border-color: #fff !important;
   border-bottom: solid;
   outline: none !important;
@@ -246,6 +246,51 @@ main.col.px-4.px-lg-5.pt-5 {
 textarea {
   width: 500px;
 }
+/*=================================*/
+/* Add movies to playlist section  */
+/*=================================*/
+.carousel-control-prev {
+  left: 9rem;
+}
+
+.movie-rec {
+  background: rgba(90, 78, 217, 1);
+	box-shadow: 0 0 0 0 rgba(90, 78, 217, 1);
+	animation: pulse-frame 2s infinite;
+}
+
+@keyframes pulse-frame {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(142, 68, 173, 0.7);
+	}
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(142, 68, 173, 0);
+	}
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(142, 68, 173, 0);
+	}
+}
+
+/* Will need a few media queries to be absolutely responsive */
+
+#review-playlist {
+  margin: 0 2rem !important;
+}
+
+.retake-btn {
+  color: #05AFF2;
+  border-color: #05AFF2;
+}
+
+.retake-btn:hover {
+  color: #fff;
+  background-color: #05AFF2;
+  border-color: #fff;
+}
+
 
 .review-movies {
   display: none;
