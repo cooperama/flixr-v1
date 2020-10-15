@@ -41,6 +41,10 @@ h2 {
   color: white;
 }
 
+h3.text-light {
+  font-family: 'Alata', sans-serif !important;
+}
+
 dl, ol, ul {
   margin-bottom: 0;
 }
@@ -445,6 +449,7 @@ background-color: transparent;
   list-style-type: none;
   height: 100%;
   overflow: hidden;
+  padding-left: 0 !important;
 }
 .playlist-gallery li {
   float: left;

@@ -620,7 +620,6 @@ if (quizletEl) {
 if (reviewBtn) {
   reviewBtn.addEventListener('click', () => {
     createBtn.classList.toggle('display-content');
-    // fix this stuffffffffff (styles.css classes)
     document.querySelector('.movies-display').classList.toggle('hide-content');
     document.querySelector('.review-button').classList.toggle('hide-content');
     document.querySelector('.review-movies').classList.toggle('display-content');
@@ -633,27 +632,19 @@ $('#movieCarousel .carousel-item').each(function(){
   var minPerSlide = 3;
   var next = $(this).next();
   if (!next.length) {
-  next = $(this).siblings(':first');
+    next = $(this).siblings(':first');
   }
   next.children(':first-child').clone().appendTo($(this));
   
   for (var i=0;i<minPerSlide;i++) {
-    // const activeCarousel = document.querySelector('.carousel-item .active');
-
-    // if (activeCarousel.length > 0) {
-    //   activeCarousel.classList.add('movie-rec');
-    // } else {
-    //   activeCarousel.classList.remove('movie-rec');
-    // }
-
     next=next.next();
     if (!next.length) {
       next = $(this).siblings(':first');
     }
     
     next.children(':first-child').clone().appendTo($(this));
-    }
-  });
+  }
+});
 
 
 if (movieCarousel) {

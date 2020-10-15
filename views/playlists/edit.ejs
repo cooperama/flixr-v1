@@ -17,8 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
     <!-- Main JS -->
     <script src="/js/app.js" defer></script>
-    <script src="/js/editHelper.js" defer></script>
-
+    <script src="/js/playlistShow.js" defer></script>
     <title>FLIXR</title>
   </head>
 <body>
@@ -30,14 +29,14 @@
     <ul class="navbar-nav ml-auto">
     </ul>
   </nav>
-  <div class="container-fluid px-0 flex-grow-1">
-    <div class="row no-gutters flex-nowrap navbar-expand-lg">
-        <div class="col-xl-1 col-auto text-white sidebar bg-black min-vh-100">
+  <div class="container-fluid px-0 flex-grow-1 show-sidebar-container">
+    <div class="row no-gutters flex-nowrap navbar-expand-lg h-100">
+        <div class="col-sm-1 col-auto text-white sidebar bg-black min-vh-100">
             <div class="row no-gutters flex-nowrap sticky-top sticky-top-side">
                 <div class="col-sm-12 text-center">
                     <div class="sidenav">
-                      <a class="nav-link py-2" href="/dashboard"><i class="ml-auto mdi mdi-home-outline icon-white"></i></a>
-                      <a class="nav-link py-2" href="/dashboard#sectionMyPlaylists"><i class="ml-auto mdi mdi-youtube-subscription icon-white"></i></a>
+                      <a class="nav-link py-2" href="../dashboard"><i class="ml-auto mdi mdi-home-outline icon-white"></i></a>
+                      <a class="nav-link py-2" href="../dashboard#sectionMyPlaylists"><i class="ml-auto mdi mdi-youtube-subscription icon-white"></i></a>
                       <a class="nav-link py-2" href="/playlists/new"><i class="ml-auto mdi mdi-plus-circle icon-white"></i></a>
                       <a class="nav-link py-2" href="#"><i class="ml-auto mdi mdi-cog-outline icon-white"></i></a>
                       <a class="nav-link py-2" href="/users/login"><i class="ml-auto mdi mdi-logout-variant icon-white"></i></a>
@@ -45,7 +44,6 @@
                 </div>
             </div>
         </div>
-
 
 
 <div class="edit-playlist-container">
