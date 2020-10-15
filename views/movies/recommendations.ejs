@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 <div class="container text-center my-3 movies-display">
-  <h2 class="font-weight-light" id="added-movie-alert">click a movie to add it to your playlist</h2>
+  <h2 class="font-weight-light mb-4" id="added-movie-alert">Click movies to add it to your playlist!</h2>
   <div class="row mx-auto my-auto">
     <div id="movieCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
         <div id="movie-rec" class="carousel-inner w-100" role="listbox">
@@ -50,23 +50,22 @@
     <button class="btn btn-outline-warning retake-btn" href="../playlists/new">retake quiz</button>
   </div>
 </div>
-  </div>
 
-<div class="container create-playlist-form">
+
+<div class="create-playlist-form">
   
   <div class="row">
     <div class="chosen-movies"></div>
   </div>
 
-  <div class="row">
+  <div class="row-lg-11 review-form-div">
     <form action="/playlists" method="POST" class="playlist-form">
-    
       <div class="form-group">
         <input 
           type="text" 
           id="playlist-title" 
           name="title" 
-          placeholder="playlist name"
+          placeholder="your playlist name"
           required
         />
       </div>
@@ -74,13 +73,13 @@
         <textarea 
           id="playlist-description" 
           name="description" 
-          placeholder="Enter playlist description here. (You can change this later)"></textarea>
+          placeholder="enter playlist description (you can change this later)"></textarea>
       </div>
       <input type="hidden" name="movieIdString" id="movieIdString" />
       <button class="create-playlist">create playlist</button>
     </form>
   </div>
-  
+</div>  
 </div>
 
 <%- include('../partials/footer.ejs') %>
