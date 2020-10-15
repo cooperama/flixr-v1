@@ -11,7 +11,7 @@ router.get('/', forwardAuthenticated, (req, res) => res.render('users/login'));
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, async (req, res) => {
-  let recentPlaylists = await db.Playlist.find().sort({createdAt: -1}).limit(5);
+  let recentPlaylists = await db.Playlist.find().sort({createdAt: -1}).limit(5).populate('user', "-password");
   console.log(recentPlaylists)
   db.Playlist.find({user: req.user._id}, (err, allPlaylists) => {
     if (err) return console.log(err);
