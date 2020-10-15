@@ -305,6 +305,7 @@ function generateQuestionnaire() {
 
     options.forEach((option, i) => {
       const choice = document.createElement('button')
+      choice.classList.add("btn btn-outline-primary")
       choice.innerText = options[i];
       questionEl.appendChild(choice);
     })
@@ -396,7 +397,7 @@ async function confirmAdd() {
 }
 
 // -------------- Event Listeners
-const quizletEl = document.querySelector('.quizlet');
+const quizletEl = document.querySelector('.quizletForm');
 const startQuizBtn = document.querySelector('.start-quiz');
 const genreIdsArr = Object.keys(genreCount);
 const movieCarousel = document.getElementById('movieCarousel');
