@@ -1,3 +1,5 @@
+<%- include('../partials/header.ejs') %>
+
 <form action="/users/login" method="POST">
     <div class="form-group">
       <label for="email">Email</label>
@@ -24,3 +26,5 @@
   <p class="lead mt-4">
     No Account? <a href="/users/register">Register</a>
   </p>
+
+  <%- include('../partials/footer.ejs') %>
