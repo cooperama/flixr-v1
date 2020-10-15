@@ -660,7 +660,6 @@ if (movieCarousel) {
   const moviePlaylist = [];
   let movieIdStrings = '';
   let styleNumber = 1;
-  
   // listen for clicks on movie posters
   movieCarousel.addEventListener('click', (e) => {
     const imgNode = e.target.parentElement.firstElementChild.firstElementChild;
@@ -672,31 +671,16 @@ if (movieCarousel) {
         // build up string to pass into playlist model for parsing later
         movieIdStrings += imgNode.alt + ','
         document.getElementById('movieIdString').setAttribute('value', movieIdStrings);
-        
         // add movieID to playlist array
         moviePlaylist.push(imgNode.alt);
-
-
-
-        // const movieSpan = document.createElement('span');
-        // movieSpan.style.transform = `rotateY(calc(var(--${styleNumber}) * 45deg)) translateZ`;
-        
-
-        // const addedMovie = document.createElement('img')
-        // addedMovie.setAttribute('src', imgNode.currentSrc)
-        // addedMovie.setAttribute('alt', imgNode.alt)      
-
-        // movieSpan.appendChild(addedMovie);
-        // document.querySelector('.chosen-movies').appendChild(movieSpan);
-        // styleNumber++;
-
-
+        const movieSpan = document.createElement('span')
+        movieSpan.setAttribute("style", "--i:"+`${styleNumber}`)
         const addedMovie = document.createElement('img')
         addedMovie.setAttribute('src', imgNode.currentSrc)
         addedMovie.setAttribute('alt', imgNode.alt)      
-
-        document.querySelector('.chosen-movies').appendChild(addedMovie);
-
+        document.querySelector('.chosen-movies').appendChild(movieSpan);
+        movieSpan.appendChild(addedMovie);
+        styleNumber++;
       }
     }
   }
