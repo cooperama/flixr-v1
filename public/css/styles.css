@@ -15,9 +15,10 @@
 
 body {
   overflow-x: hidden;
-  padding-top: 55px;
+  padding-top: 0;
   background: linear-gradient(56deg, #2e2d4d, #190c3e);
   background-size: 400% 400%;
+  overflow: hidden;
   -webkit-animation: gradientAnimated 57s ease infinite;
   -moz-animation: gradientAnimated 57s ease infinite;
   animation: gradientAnimated 57s ease infinite;
@@ -393,11 +394,11 @@ textarea {
 }
 
 .playlist-gallery .text h3 {
-  color: #6334E3;
+  color: #6334E3 !important;
 }
 
 .playlist-gallery .text h3:after {
-  background: #6334E3;
+  background: #6334E3 !important;
 }
 
 .playlist-gallery .playlist-content {
