@@ -372,13 +372,11 @@ background-color: transparent;
     color: white;
 }
 
-/*=========================================*/
-/*                Show Page                */
-/*=========================================*/
 
-/*=============*/
-/*  Edit Page  */
-/*=============*/
+
+/*=========================================*/
+/*                Edit Page                */
+/*=========================================*/
 
 
 .movie-id-checkbox {
@@ -393,9 +391,10 @@ background-color: transparent;
 .edit-playlist-container {
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 100vw;
   align-items: center;
 }
+
 .edit-pl-title-desc {
   display: flex;
   flex-direction: column;
@@ -430,11 +429,13 @@ background-color: transparent;
 }
 
 
-/*=============*/
-/*  Show Page  */
-/*=============*/
+/*=========================================*/
+/*                Show Page                */
+/*=========================================*/
+
 .show-sidebar-container {
-  height: 100vh;
+  height: 100%;
+  /* height: 100vh; */
 }
 
 .show-gallery-container {

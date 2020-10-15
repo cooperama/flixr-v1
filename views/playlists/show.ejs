@@ -80,14 +80,14 @@
       <p><%= playlist.description %></p>
     <% } %> 
     <!-- Edit Buttons -->
-    <button id="delete-button" onclick="confirmDelete()">delete playlist</button>
+    <button class="btn btn-outline-primary rounded-pill mt-2" id="delete-button" onclick="confirmDelete()">delete playlist</button>
     <form id="confirm-delete-button" class="hide-content" action="/playlists/<%= playlist._id %>/?_method=DELETE" method="POST">
-      <button type="submit">confirm delete</button>
+      <button class="btn btn-outline-primary rounded-pill mt-2" type="submit">confirm delete</button>
     </form>
     <form action="/playlists/<%= playlist._id %>/edit" method="GET">
-      <button type="submit">edit playlist</button>
+      <button class="btn btn-outline-primary rounded-pill mt-2" type="submit">edit playlist</button>
     </form>
     </div>
-    </div>
   </div>
+</div>
 <%- include('../partials/footer.ejs') %>

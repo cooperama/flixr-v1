@@ -23,7 +23,7 @@ var Gallery = (function() {
   
         eventManager: function() {
             var _this = this;
-            $(".profile-gallery").on('mousewheel', function(e) {
+            $("html, body").on('mousewheel', function(e) {
                 clearTimeout(scrollTimeId);
                 scrollTimeId = setTimeout(onScrollEventHandler.bind(this, e, _this.itemWidth), 0);
             });
@@ -56,7 +56,7 @@ var Gallery = (function() {
     };
   
     function onScrollEventHandler(event, width) {
-      if (event.deltaY > 0) {
+      if (event.originalEvent.deltaY > 0) {
         this.scrollLeft -= width / 2;
       } else {
         this.scrollLeft += width / 2;
