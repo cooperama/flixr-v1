@@ -1,15 +1,35 @@
 :root {
   --bg-gradient: linear-gradient(269deg, #1b1a2e, #190c3e);
-  --bg-dark: #090118;
-  --bg-md: rgba(139, 81, 245, .34);
+  --bg-dark: hsl(261, 92%, 5%);
   --bg-md-light: #8b51f5;
   --bg-light: #e8ddfd;
+}
+
+* {
+  font-family: 'Alata', sans-serif;
 }
 
 body {
   overflow-x: hidden;
   padding-top: 55px;
   background: linear-gradient(269deg, #1b1a2e, #190c3e) !important;
+}
+
+h2 {
+  color: white;
+}
+
+.movie-lp {
+  left: 5%;
+}
+.lp-explorer:nth-of-type(1) {
+  color: var(--bg-md-light);
+}
+.lp-explorer:nth-of-type(2) {
+  color: #6334E3;
+}
+.lp-explorer:nth-of-type(3) {
+  color: #5125AD;
 }
 
 .navbar-brand {

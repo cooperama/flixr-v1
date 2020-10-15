@@ -101,16 +101,16 @@ router.get('/:playlistId/edit', async (req, res) => {
 
 
 
-// // ----------------- GET playlists for existing users
+// ----------------- GET playlists for existing users
 
-// router.get('/users/:userId', async (req, res) => {
-//   let playlists = await db.Playlist.find({ user: req.params.userId})
-//     const context = {
-//       playlist: playlists,
-//     }
-//     console.log(playlists)
-//     // res.render(`playlists/show`, context);
-// })
+router.get('/users/:userId', async (req, res) => {
+  let playlists = await db.Playlist.find({ user: req.params.userId})
+    const context = {
+      playlist: playlists,
+    }
+    console.log(playlists)
+    // res.render(`playlists/show`, context);
+})
 
 
 
