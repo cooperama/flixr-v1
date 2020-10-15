@@ -437,7 +437,7 @@ textarea {
   font: normal 30px/1.25 'Open Sans';
   margin-bottom: 25px;
 }
-.gallery .playlist-content h3:after {
+.playlist-gallery .playlist-content h3:after {
   content: '';
   position: absolute;
   width: 50px;
@@ -576,6 +576,11 @@ transform: translateX(0);
   }
 }
 
+
+/*=========================================*/
+/*        Playlist Gallery Keyframes       */
+/*=========================================*/
+
 @-webkit-keyframes gradientAnimated {
   0%{background-position:96% 0%}
   50%{background-position:5% 100%}
@@ -590,4 +595,48 @@ transform: translateX(0);
   0%{background-position:96% 0%}
   50%{background-position:5% 100%}
   100%{background-position:96% 0%}
+}
+
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes load {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes hide {
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+@-moz-keyframes hide {
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+@keyframes hide {
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
