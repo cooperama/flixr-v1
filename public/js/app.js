@@ -252,6 +252,121 @@ const genreIncrementCount = {
     10770: 1,
     53: 2,
   },
+  dancing: {
+    28: 3,
+    12: 2,
+    80: 1,
+    14: 3,
+    36: 1,
+    27: 2,
+    9648: 1,
+    878: 1,
+    53: 1,
+    10752: 1,
+  },
+  singing: {
+    16: 2,
+    35: 3,
+    99: 1,
+    18: 2,
+    10751: 2,
+    10402: 3,
+    10749: 2,
+    10770: 1,
+    37: 2,
+  },
+  "cross out": {
+    12: 3,
+    16: 1,
+    35: 2,
+    80: 2,
+    18: 2,
+    36: 2,
+    27: 3,
+    10749: 1,
+    53: 2,
+    37: 2,
+  },
+  erase: {
+    28: 2,
+    99: 2,
+    10751: 2,
+    14: 1,
+    10402: 1,
+    9648: 3,
+    878: 1,
+    10770: 2,
+    10752: 2,
+  },
+  smoothie: {
+    28: 1,
+    16: 1,
+    99: 3,
+    10751: 1,
+    14: 1,
+    10402: 2,
+    878: 2,
+    10770: 2,
+    10752: 2,
+  },
+  coffee: {
+    12: 2,
+    35: 2,
+    80: 2,
+    18: 1,
+    36: 1,
+    27: 2,
+    9648: 2,
+    10749: 1,
+    53: 1,
+    10752: 2,
+  },
+  shower: {
+    28: 2,
+    12: 1,
+    99: 2,
+    36: 3,
+    10402: 2,
+    9648: 2,
+    878: 2,
+    10770: 1,
+    53: 2,
+  },
+  bath: {
+    16: 2,
+    35: 1,
+    80: 1,
+    18: 3,
+    10751: 1,
+    14: 2,
+    27: 1,
+    10749: 2,
+    10752: 3,
+    37: 3,
+  },
+  sweet: {
+    16: 3,
+    35: 1,
+    18: 1,
+    10751: 3,
+    14: 2,
+    10402: 1,
+    10749: 3,
+    10770: 3,
+  },
+  spicy: {
+    28: 1,
+    12: 1,
+    80: 3,
+    99: 1,
+    36: 2,
+    27: 1,
+    9648: 1,
+    878: 3,
+    53: 3,
+    10752: 1,
+    37: 1,
+  },
 };
 
 const comparisonOptions = [
@@ -260,14 +375,14 @@ const comparisonOptions = [
   ['London', 'Paris'], 
   ['iguana', 'dolphin'], 
   ['dine-in', 'take-out'], 
-  // ['by boat', 'by train'], 
+  ['by boat', 'by train'], 
   ['awkward humor', 'witty humor'], 
-  // ['breakfast', 'brunch'], 
-  // ['breakfast', 'brunch'], 
+  ['hairspray', 'mousse'], 
+  ['grunge', 'glam'], 
   ['breakfast', 'brunch'], 
   ['camping', 'skiing'], 
-  // ['camping', 'skiing'], 
-  // ['camping', 'skiing'], 
+  ['card games', 'board games'], 
+  ['zombies', 'vampires'], 
   ['childhood', 'adulthood'],
   ['ask permission', 'ask forgiveness'],
   ['sandwich', 'spaghetti'],
@@ -277,7 +392,13 @@ const comparisonOptions = [
   ['present', 'future'],
   ['vacation', 'staycation'],
   ['bowling', 'laser tag'],
-  ['hiking', 'sailing']
+  ['hiking', 'sailing'],
+  ['dancing', 'singing'],
+  ['cross out', 'erase'],
+  ['smoothie', 'coffee'],
+  ['suit', 'sweats'],
+  ['shower', 'bath'],
+  ['sweet', 'spicy']
 ];
 
 // -------------- Search Criteria Functions
@@ -346,7 +467,17 @@ function getTopGenres(genreCountObj) {
 
 function addQueryParams(choice) {
   const langInput = document.getElementById('language')
+  const voteCountInput = document.getElementById('vote_count_gte')
+
   const voteInput = document.getElementById('vote_average_gte')
+  const voteInputLTE = document.getElementById('vote_average_lte')
+
+  const runtimeInput = document.getElementById('with_runtime_gte')
+  const runtimeInputLTE = document.getElementById('with_runtime_lte')
+
+  const dateInput = document.getElementById('release_date_gte')
+  const dateInputLTE = document.getElementById('release_date_lte')
+
   switch (choice) {
     case 'Las Vegas':
     case 'London':
@@ -361,17 +492,52 @@ function addQueryParams(choice) {
     case 'witty humor':
     case 'dolphin':
       voteInput.setAttribute('value', 7.3)
+      voteInputLTE.setAttribute('value', '')
       break;
+    case 'awkward humor':
+    case 'iguana':
+      voteInputLTE.setAttribute('value', 7.5)
+      voteInput.setAttribute('value', '')
+      break;
+    case 'by boat':
     case 'dine-in':
-      const runtimeInput = document.getElementById('with_runtime_gte')
       runtimeInput.setAttribute('value', 90)
+      runtimeInputLTE.setAttribute('value', '')
       break;
+    case 'by train':
+    case 'take-out':
+      runtimeInputLTE.setAttribute('value', 100)
+      runtimeInput.setAttribute('value', '')
+      break;
+    case 'ask permission':
     case 'brunch':
-      const dateInput = document.getElementById('release_date_gte')
+    case 'sweats':
       dateInput.setAttribute('value', 1985)
+      dateInputLTE.setAttribute('value', '')
+      break;
+    case 'vampires':
+    case 'card games':
+    case 'childhood':
+      dateInputLTE.setAttribute('value', 2010)
+      dateInput.setAttribute('value', '')
+      break;
+    case 'grunge':
+    case 'camping':
+    case 'bowling':
+      dateInputLTE.setAttribute('value', 2000)
+      dateInput.setAttribute('value', '')
+      break;
+    case 'glam':
+    case 'hairspray':
+    case 'Paris':
+      dateInputLTE.setAttribute('value', 1990)
+      dateInput.setAttribute('value', '')
+      break;
+    case 'suit':
+      dateInputLTE.setAttribute('value', 1960)
+      dateInput.setAttribute('value', '')
       break;
     case 'skiing':
-      const voteCountInput = document.getElementById('vote_count_gte')
       voteCountInput.setAttribute('value', 300)
       break;
   }
@@ -389,6 +555,7 @@ function confirmDelete() {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 async function confirmAdd() {
   console.log('added movie')
   movieAlertH2.innerText = 'movie added!';
@@ -406,9 +573,6 @@ const createBtn = document.querySelector('.create-playlist-form');
 const movieAlertH2 = document.getElementById('added-movie-alert');
 let questionsArr;
 let questionIndex = 0;
-let queryParams = {
-  "vote_count_gte": 100,
-};
 
 if (startQuizBtn) {
   startQuizBtn.addEventListener('click', () => {
@@ -416,25 +580,21 @@ if (startQuizBtn) {
     questionsArr = generateQuestionnaire();
     quizletEl.appendChild(questionsArr[questionIndex]);
     startQuizBtn.remove();
-    // hide form-group
-    // const inputEls = document.querySelectorAll('.form-group')
-    // inputEls.forEach(inputEl => inputEl.style.display = 'none')
   })
 }
 
 if (quizletEl) {
   quizletEl.addEventListener('click', (e) => {
-    const genre = e.target.innerText;
-    if (genreIncrementCount.hasOwnProperty(genre)) {
-      incrementGenre(genre);
-    } else {
-      addQueryParams(genre);
+    const userChoice = e.target.innerText;
+    console.log('chosen option: ', userChoice);
+    if (genreIncrementCount.hasOwnProperty(userChoice)) {
+      incrementGenre(userChoice);
     }
-  
+    addQueryParams(userChoice);
+
     if (questionIndex === questionsArr.length - 1) {
-  
       getTopGenres(genreCount)
-  
+
       // set object counters back to original state
       genreIdsArr.forEach(genre => genreCount[genre] = 0)
       questionIndex = 0;
@@ -444,7 +604,8 @@ if (quizletEl) {
       submitBtn.innerText = 'get movies';
       submitBtn.setAttribute('type', 'submit');
       quizletEl.appendChild(submitBtn);
-  
+
+
     } else {
       questionIndex++;
       quizletEl.appendChild(questionsArr[questionIndex]);
