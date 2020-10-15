@@ -1,18 +1,25 @@
-/* body {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-gradient: linear-gradient(269deg, #1b1a2e, #190c3e);
+  --bg-dark: #090118;
+  --bg-md: rgba(139, 81, 245, .34);
+  --bg-md-light: #8b51f5;
+  --bg-light: #e8ddfd;
+}
 
 body {
   overflow-x: hidden;
   padding-top: 55px;
-  background: linear-gradient(269deg, #1b1a2e, #190c3e) !important;
+  background: var(--bg-gradient) !important;
+  /* background: linear-gradient(269deg, #1b1a2e, #190c3e) !important; */
 }
 
+h2 {
+  color: white;
+}
 .navbar-brand {
   font-size: 1.5rem !important;
   margin-right: 0 !important;
@@ -21,7 +28,8 @@ body {
 
 .fixed-top {
   max-width: 8.333333%;
-  background-color: #090118 !important;
+  background-color: var(--bg-dark) !important;
+  /* background-color: #090118 !important; */
 }
 
 a.d-lg-none.d-inline.mr-3 {
@@ -34,7 +42,8 @@ a.d-lg-none.d-inline.mr-3 {
 }
 
 .bg-black {
-  background-color: #090118;
+  background-color: var(--bg-dark);
+  /* background-color: #090118; */
 }
 
 i.icon-white {
@@ -62,19 +71,24 @@ i.icon-white {
 }
 
 main.col.px-4.px-lg-5.pt-5 {
-  background: linear-gradient(269deg, #1b1a2e, #190c3e) !important;
+  background: var(--bg-gradient) !important;
+  /* background: linear-gradient(269deg, #1b1a2e, #190c3e) !important; */
 }
 
 .card.text-light.shadow-sm.h-100 {
-  background-color: rgba(139, 81, 245, .34);
+  background-color: var(--bg-md);
+  /* background-color: rgba(139, 81, 245, .34); */
 }
 .btn-outline-secondary {
-  color: #8b51f5 !important;
-  border-color: #8b51f5 !important;
+  color: var(--bg-md-light) !important;
+  border-color: var(--bg-md-light) !important;
+  /* color: #8b51f5 !important;
+  border-color: #8b51f5 !important; */
 }
 
 .btn-outline-secondary:hover {
-  background-color: #e8ddfd !important;
+  background-color: var(--bg-light) !important;
+  /* background-color: #e8ddfd !important; */
 }
 
 .pt-2, .py-2 {
