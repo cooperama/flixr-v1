@@ -12,20 +12,20 @@
 <% moviesList.forEach((movie, i) => { %>
   <% if (i === 0) { %> 
     <div class="carousel-item active">
-    <% } else { %> 
-      <div class="carousel-item">
-    <% } %> 
-    <div class="col-md-4">
-        <div class="card card-body">
-          <div class="hover hover-3 text-white rounded">
-            <img class="img-fluid" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.id %>" />
-            <div class="hover-overlay"></div>
-            <div class="hover-3-content px-5 py-4">
-            <p class="hover-3-description small text-uppercase mb-0"><%= movie.overview %></p>
+  <% } else { %> 
+    <div class="carousel-item">
+  <% } %> 
+      <div class="col-md-4">
+          <div class="card card-body">
+            <div class="hover hover-3 text-white rounded">
+              <img class="img-fluid" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.id %>" />
+              <div class="hover-overlay"></div>
+              <div class="hover-3-content px-5 py-4">
+              <p class="hover-3-description small text-uppercase mb-0"><%= movie.overview %></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
 <% }) %>
 

@@ -22,34 +22,24 @@ router.get('/recommendations', async (req, res) => {
             include_adult: req.query.include_adult,
         }
     })
-
     // get first 50 results, shuffle them, send them as context
     const movies = response.data.results.slice(0, 50).filter(movie => {
         if (movie.poster_path) return movie;
     });
-
     const selectedIndices = [];
     let index;
     while (selectedIndices.length < 10) {
         index = Math.floor(Math.random() * movies.length);
         if (selectedIndices.indexOf(index) === -1) selectedIndices.push(index);
     }
-
     const chosenMovies = [];
     selectedIndices.forEach(index => {
         chosenMovies.push(movies[index]);
     })
-
-
     const context = {
         moviesList: chosenMovies,
     }
-    // const context = {
-    //     moviesList: response.data.results,
-    // }
-
     console.log(chosenMovies)
-
     console.log(response.data.total_results);
     res.render('movies/recommendations', context);
     }
