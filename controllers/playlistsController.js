@@ -6,18 +6,18 @@ const db = require('../models');
 
 
 // ----------------- GET index
-router.get('/', (req, res) => {
-  db.Playlist.find({}, (err, allPlaylists) => {
-  if (err) {
-    res.render('404');
-    return console.log(err);
-  }
-  const context = {
-      playlists: allPlaylists,
-  };
-    res.render('playlists/index', context);
-  })
-});
+// router.get('/', (req, res) => {
+//   db.Playlist.find({}, (err, allPlaylists) => {
+//   if (err) {
+//     res.render('404');
+//     return console.log(err);
+//   }
+//   const context = {
+//       playlists: allPlaylists,
+//   };
+//     res.render('playlists/index', context);
+//   })
+// });
 
 
 // ----------------- GET new
@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
       res.render('404');
       return console.log(err);
     }
-
+    
     db.Playlist.findById(playlist._id, (err, foundPlaylist) => {
       if (err) {
         res.render('404');
@@ -48,6 +48,7 @@ router.post('/', (req, res) => {
 
       let parsedMovieIds = foundPlaylist.movieIdString.split(',')
       parsedMovieIds = parsedMovieIds.slice(0, parsedMovieIds.length - 1);
+      console.log('parsedMoviedIds: ', parsedMovieIds)
       parsedMovieIds.forEach(movieId => {
         foundPlaylist.movieIDs.push(movieId);
       });
@@ -60,6 +61,7 @@ router.post('/', (req, res) => {
 
 // // ----------------- PUT (UPDATE & EDIT) movieIds for existing playlists
 router.put('/:playlistId', (req, res) => {
+
   db.Playlist.findById(req.params.playlistId, (err, playlist) => {
     if (err) {
       res.render('404');
@@ -72,6 +74,7 @@ router.put('/:playlistId', (req, res) => {
     parsedMovieIds.forEach(movieId => {
       newMovieIds.push(movieId);
     });
+
     playlist.movieIDs = newMovieIds;
     playlist.save();
 
@@ -115,25 +118,6 @@ router.get('/:playlistId/edit', async (req, res) => {
 
 
 
-// // ----------------- GET playlists for existing users
-
-// router.get('/users/:userId', async (req, res) => {
-//   try {
-//     let playlists = await db.Playlist.find({ user: req.params.userId})
-//       const context = {
-//         playlist: playlists,
-//       }
-//       console.log(playlists)
-//       // res.render(`playlists/show`, context);
-//   }
-//   catch(err) {
-//     res.render('404');
-//   }
-// })
-
-
-
-
 // ----------------- GET (SHOW) - movie details (description, poster path, voting average)
 router.get('/:playlistId', async (req, res, next) => {
   let playlist = await db.Playlist.findById(req.params.playlistId);
@@ -171,7 +155,7 @@ router.get('/:playlistId', async (req, res, next) => {
 router.delete('/:playlistID', async (req, res) => {
   try {
     await db.Playlist.findByIdAndDelete(req.params.playlistID);
-    res.redirect('/playlists')
+    res.redirect('/dashboard')
   }
   catch(err) {
     res.render('404');

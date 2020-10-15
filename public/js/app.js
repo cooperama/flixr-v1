@@ -426,7 +426,7 @@ function generateQuestionnaire() {
 
     options.forEach((option, i) => {
       const choice = document.createElement('button')
-      choice.classList.add("btn", "btn-outline-primary")
+      choice.classList.add("btn", "btn-outline-primary", "mr-3")
       choice.innerText = options[i];
       questionEl.appendChild(choice);
     })
@@ -605,6 +605,7 @@ if (quizletEl) {
       const submitBtn = document.createElement('button');
       submitBtn.innerText = 'get movies';
       submitBtn.setAttribute('type', 'submit');
+      submitBtn.classList.add("btn", "btn-outline-primary", "mr-3");
       quizletEl.appendChild(submitBtn);
 
 
@@ -637,14 +638,23 @@ $('#movieCarousel .carousel-item').each(function(){
   next.children(':first-child').clone().appendTo($(this));
   
   for (var i=0;i<minPerSlide;i++) {
-      next=next.next();
-      if (!next.length) {
-        next = $(this).siblings(':first');
-      }
-      
-      next.children(':first-child').clone().appendTo($(this));
+    // const activeCarousel = document.querySelector('.carousel-item .active');
+
+    // if (activeCarousel.length > 0) {
+    //   activeCarousel.classList.add('movie-rec');
+    // } else {
+    //   activeCarousel.classList.remove('movie-rec');
+    // }
+
+    next=next.next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
     }
-});
+    
+    next.children(':first-child').clone().appendTo($(this));
+    }
+  });
+
 
 if (movieCarousel) {
   const moviePlaylist = [];

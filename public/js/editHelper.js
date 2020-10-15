@@ -10,8 +10,8 @@ function updatePlaylistMovies() {
       movieChoices += movieId + ',';
     }
   })
+
   // set value of movie choices input to checked movies
   const moviesToUpdate = document.getElementById('movie-choices');
   moviesToUpdate.setAttribute('value', movieChoices)
-  console.log('movie choices: ', movieChoices)
 }
