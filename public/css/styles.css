@@ -185,6 +185,10 @@ i.icon-white {
   top: 70px;
 }
 
+.sidebar {
+  height: 100vh;
+}
+
 .sidebar .mdi, .navbar .mdi {
   font-size: 26px;
 }
@@ -580,6 +584,33 @@ background-color: transparent;
   border: 4px solid transparent;
   border-top-color: #3498DB;
   border-left-color: #3498DB;
+}
+
+#playlist-info-btn {
+  font-family: 'Alata', sans-serif;
+  padding: 3px 3px;
+  margin: 10px;
+  background: transparent;
+  color: white;
+  width: 90%;
+}
+
+#playlist-info {
+  color: white;
+  font-family: 'Alata', sans-serif;
+  line-height: 14px;
+}
+
+#pi-info-div {
+  display: none;
+  background-color: rgba(0,0,0,.8);
+  height: 900px;
+}
+
+.parent-pli-div {
+  position: fixed;
+  right: 0;
+  background-color: rgba(0,0,0,.2);
 }
 
 /* DEMO 3 */
