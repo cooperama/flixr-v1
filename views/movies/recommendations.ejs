@@ -1,4 +1,48 @@
-<%- include('../partials/header.ejs') %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap Styling -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Materialize Icons -->
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+  <!-- Main JS -->
+  <script src="/js/app.js" defer></script>
+  <script src="/js/editHelper.js" defer></script>
+
+  <title>FLIXR</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-black navbar-expand fixed-top">
+  <a data-toggle="collapse" href="#" data-target="#fullmenu" role="button" class="d-lg-none d-inline mr-3">
+      <i class="mdi mdi-view-sequential"></i>
+  </a>
+  <a class="navbar-brand text-light" href="../dashboard">FLIXR</a>
+  <ul class="navbar-nav ml-auto">
+  </ul>
+</nav>
+<div class="container-fluid px-0 flex-grow-1">
+  <div class="row no-gutters flex-nowrap navbar-expand-lg">
+      <div class="col-xl-1 col-auto text-white sidebar bg-black min-vh-100">
+          <div class="row no-gutters flex-nowrap sticky-top sticky-top-side">
+              <div class="col-sm-12 text-center">
+                  <div class="sidenav">
+                    <a class="nav-link py-2" href="../dashboard"><i class="ml-auto mdi mdi-home-outline icon-white"></i></a>
+                    <a class="nav-link py-2" href="../dashboard#sectionMyPlaylists"><i class="ml-auto mdi mdi-youtube-subscription icon-white"></i></a>
+                    <a class="nav-link py-2" href="/playlists/new"><i class="ml-auto mdi mdi-plus-circle icon-white"></i></a>
+                    <a class="nav-link py-2" href="#"><i class="ml-auto mdi mdi-cog-outline icon-white"></i></a>
+                    <a class="nav-link py-2" href="../users/logout"><i class="ml-auto mdi mdi-logout-variant icon-white"></i></a>
+                  </div>
+              </div>
+          </div>
+      </div>
 <div class="container text-center my-3 movies-display">
   <h2 class="font-weight-light mb-4" id="added-movie-alert">Click movies to add it to your playlist!</h2>
   <div class="row mx-auto my-auto">
@@ -47,7 +91,7 @@
       <span class='review-button'>review playlist</span>
       <span class='review-movies'>review movies</span>
     </button>
-    <button class="btn btn-outline-warning retake-btn" href="../playlists/new">retake quiz</button>
+    <button class="btn btn-outline-warning retake-btn"> <a href="../../playlists/new">retake quiz</button>
   </div>
 </div>
 
