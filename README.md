@@ -41,7 +41,7 @@ Our objective was to create an app that makes use of [The Movie Database API](ht
 
 On Flixr's landing page, the user may log in, or register if they don't have an account.
 
-![image](public/images/log in.png)
+![image](public/images/log-in.png)
 
 ![image](public/images/register.png)
 
@@ -55,13 +55,13 @@ The user dashboard shows recent activity on the site, with the logged-in user's 
 
 To make a new playlist, the user takes a short quizlet.
 
-![image](public/images/start quiz.png)
+![image](public/images/start-quiz.png)
 
 ### Edit Page
 
 Once the playlist has been made, it can be viewed, edited, or deleted.
 
-![image](public/images/edit page.png)
+![image](public/images/edit-page.png)
 
 
 ## Data Models
