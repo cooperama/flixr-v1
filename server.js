@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
-// const { mongoose } = require('mongoose');
+const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
+
 
 const app = express();
 
@@ -79,11 +80,10 @@ app.use(function(req, res, next) {
 
 
 // ---------------------- Routes 
-// app.use('/users', require('./controllers/users.js'));
-app.use('/users', require('./controllers/usersController'));
 app.use('/', require('./controllers/index'));
+app.use('/users', require('./controllers/usersController'));
 app.use('/movies', require('./controllers/moviesController'));
-app.use('/playlists', require('./controllers/playlistsController'));
+app.use('/playlists', ensureAuthenticated, require('./controllers/playlistsController'));
 
 app.get('/', (req, res) => {
   res.render('index');

@@ -1,16 +1,56 @@
+<!DOCTYPE html>
+
 <%- include('../partials/header.ejs') %>
 
+<div class= "col-lg-9 col-auto text-white min-vh-100">
+  <div class="show-gallery-container">
+    <ul class="playlist-gallery">
+      <% for( let i = 0; i < movies.length; i++ ) { %>
+      <li>
+        <div class="flip">
+          <div class="front-side" style="background-image: url('http://image.tmdb.org/t/p/w500<%= movies[i].poster_path %>');" alt="<%= movies[i].poster_path %>">
+          </div>   
+          <div class="back-side">
+            <a href="#">
+              <div class="playlist-content">
+                <div class="movie-loader"></div>
+                <div class="text">
+                  <h3><%= movies[i].title %></h3>
+                  <% if (movies[i].tagline) { %> 
+                    <p><%= movies[i].tagline %></p>
+                  <% } %> 
+                    <p><%= movies[i].overview %></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </li>
+    <% } %> 
+</div>
+</div> <!-- Page's Container Ends -->
+<!-- Playlist Description Column -->
+<div class="col-xl-2 text-white min-vh-100 parent-pli-div">
+  <button id="playlist-info-btn" class="btn btn-danger" onclick="toggleDiv()">Playlist Info</button>
+<div class= "col text-white min-vh-100 pi-info-col" id="pi-info-div">
+  <div class= "row-lg-2 d-flex flex-row text-center justify-content-center">
+    <div id="playlist-info" class= "col">
+    <h1 class="show-playlist-h1"><%= playlist.title %></h1>
+    <% if (playlist.description) { %> 
+      <p><%= playlist.description %></p>
+    <% } %> 
+    <!-- Edit Buttons -->
 
+    <button id="delete-button" class="btn btn-outline-primary" onclick="confirmDelete()">delete playlist</button>
+    <form id="confirm-delete-button" class="hide-content" action="/playlists/<%= playlist._id %>/?_method=DELETE" method="POST">
+      <button type="submit" class="btn btn-warning">confirm delete</button>
+    </form>
+    <form action="/playlists/<%= playlist._id %>/edit" method="GET">
+      <button type="submit" class="btn btn-outline-secondary">edit playlist</button>
+    </form>
+    </div>
+  </div>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
+</div>
 <%- include('../partials/footer.ejs') %>

@@ -8,16 +8,16 @@ const User = require('../models/User');
 const { forwardAuthenticated } = require('../config/auth');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+router.get('/login', forwardAuthenticated, (req, res) => res.render('users/login'));
 
 // Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+router.get('/register', forwardAuthenticated, (req, res) => res.render('users/register'));
 
 // Register
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
-
+    // Typically new/confirm passwords should be implemented on the front-end
   if (!name || !email || !password || !password2) {
     errors.push({ msg: 'Please complete all fields' });
   }
@@ -31,7 +31,7 @@ router.post('/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render('register', {
+    res.render('./users/register', {
       errors,
       name,
       email,
@@ -42,7 +42,7 @@ router.post('/register', (req, res) => {
     User.findOne({ email: email }).then(user => {
       if (user) {
         errors.push({ msg: 'This email already exists' });
-        res.render('register', {
+        res.render('./users/register', {
           errors,
           name,
           email,
@@ -67,7 +67,7 @@ router.post('/register', (req, res) => {
                   'success_msg',
                   'Success! Your account has been created. Log in!'
                 );
-                res.redirect('/users/login');
+                res.redirect('./login');
               })
               .catch(err => console.log(err));
           });
@@ -78,19 +78,21 @@ router.post('/register', (req, res) => {
 });
 
 // Login
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req, res, next);
+router.post('/login', 
+passport.authenticate('local', {
+  failureRedirect: './login',
+  failureFlash: true
+}), (req, res, next) => {
+  res.redirect('../dashboard')
+  // req.user.password = undefined;
+  // res.json(req.user);
 });
 
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You have logged out');
-  res.redirect('/users/login');
+  res.redirect('./login');
 });
 
 module.exports = router;

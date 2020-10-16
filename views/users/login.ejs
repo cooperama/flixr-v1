@@ -1,26 +1,74 @@
-<form action="/users/login" method="POST">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        class="form-control"
-        placeholder="Enter Email"
-      />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Materialize Icons -->
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+    <!-- Main JS -->
+    <script src="/js/app.js" defer></script>
+
+    <title>FLIXR</title>
+  </head>
+<body>
+
+
+<div class="container-fluid movie-lp ml-5">
+  <div class="row">
+    <div class="col-8 app-desc">
+      <div class="row mr-2 mt-5 ml-2">
+        <h2>A cinematic search engine perfect for <span class="lp-explorer">experimenters</span>, <span class="lp-explorer">explorers</span>, or simply, for those who are <span class="lp-explorer">lost.</span></h2>
+      </div>
+      <div class="row mr-2 mt-5 ml-2">
+        <p class="text-light login-message">Flixr takes an unorthodox approach when it comes to creating your next movie binge-list. Our method of generating movie choices are powered solely by how you answer a simple "this" or "that" quizlet.</p>
+        <p class="text-light login-message">We're here to do the work and free you from decision-making anxiety. As a matter of fact, by the time you're done with your quizlet, your popcorn will be ready to eat and your playlist will be prepared to be used and shared with friends!</p>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        class="form-control"
-        placeholder="Enter Password"
-      />
+    <div class="col-4 mt-5">
+      <!-- logo -->
+      <div class="flixr-logo"> FLIXR </div>
+      <div class="row ml-5">
+        <form action="/users/login" method="POST" class="login-form">
+          <div class="form-group login-group">
+            <label class="text-light mt-4" for="email"></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control login-entry" 
+              placeholder="email"
+            />
+          </div>
+          <div class="form-group login-group">
+            <label class="text-light" for="password"></label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control login-entry"
+              placeholder="password"
+            />
+          </div>
+          <button type="submit" class="btn btn-info btn-block mt-4 login-btn">LOG IN</button>
+          <p class="lead mt-4 text-light register">
+            Don't have an account? <a href="/users/register" class="sign-up">Sign up</a>
+          </p>
+        </form>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Login</button>
-  </form>
-  <p class="lead mt-4">
-    No Account? <a href="/users/register">Register</a>
-  </p>
+  </div>
+</div>
+
+
+
+  <%- include('../partials/footer.ejs') %>

@@ -11,6 +11,7 @@ const playlistSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  movieIdString: String,
   movieIDs: [{
     type: String
   }]
