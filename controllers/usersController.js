@@ -95,4 +95,16 @@ router.get('/logout', (req, res) => {
   res.redirect('./login');
 });
 
+// Settings Page
+router.get('/settings', forwardAuthenticated, (req, res) => {
+  // console.log(req.user._id);
+  console.log(req);
+  console.log('***************')
+  const context = {
+    user: req.user
+  }
+  res.render('users/settings', context)
+});
+
+
 module.exports = router;
