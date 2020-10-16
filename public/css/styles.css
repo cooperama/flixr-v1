@@ -281,8 +281,9 @@ main.col.px-4.px-lg-5.pt-5 {
 }
 
 textarea {
-  width: 500px;
+  width: 330px;
 }
+
 /*=================================*/
 /* Add movies to playlist section  */
 /*=================================*/
@@ -374,12 +375,21 @@ textarea {
 }
 
 #playlist-title, #playlist-description { 
-background-color: transparent;
-    border: none;
-    border-bottom: solid;
-    color: white;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid;
+  color: white;
 }
 
+#description,
+#title {
+  width: 330px;
+  border: none;
+  background: linear-gradient(269deg, #58388c, #4a24b5);
+  color: white;
+  border-bottom: 1px solid white;
+  padding-left: 20px;
+}
 
 
 /*=========================================*/
@@ -392,14 +402,20 @@ background-color: transparent;
 }
 
 .movie-id-checkbox:checked + label {
-  border: 3px solid rgba(90, 78, 217, 1);
+  border: 5px solid rgb(147, 102, 220);
+  margin: 1px;
+  border-radius: 3px;
 }
+.movie-id-checkbox + label {
+  border: 5px solid transparent;
+}
+
 
 
 .edit-playlist-container {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 85vw;
   align-items: center;
 }
 
