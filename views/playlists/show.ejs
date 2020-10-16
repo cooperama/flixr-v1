@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <%- include('../partials/header.ejs') %>
+
 <div class= "col-lg-9 col-auto text-white min-vh-100">
   <div class="show-gallery-container">
     <ul class="playlist-gallery">
@@ -38,6 +40,7 @@
       <p><%= playlist.description %></p>
     <% } %> 
     <!-- Edit Buttons -->
+
     <button id="delete-button" class="btn btn-outline-primary" onclick="confirmDelete()">delete playlist</button>
     <form id="confirm-delete-button" class="hide-content" action="/playlists/<%= playlist._id %>/?_method=DELETE" method="POST">
       <button type="submit" class="btn btn-warning">confirm delete</button>
@@ -48,5 +51,6 @@
     </div>
   </div>
   </div>
+
 </div>
 <%- include('../partials/footer.ejs') %>

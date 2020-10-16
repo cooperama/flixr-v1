@@ -1,54 +1,64 @@
 <%- include('../partials/header.ejs') %>
 
-<form action="/users/register" method="POST">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input
-        type="name"
-        id="name"
-        name="name"
-        class="form-control"
-        placeholder="name"
-        value="<%= typeof name != 'undefined' ? name : '' %>"
-      />
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        class="form-control"
-        placeholder="email"
-        value="<%= typeof email != 'undefined' ? email : '' %>"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        class="form-control"
-        placeholder="new password"
-        value="<%= typeof password != 'undefined' ? password : '' %>"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password2">Confirm Password</label>
-      <input
-        type="password"
-        id="password2"
-        name="password2"
-        class="form-control"
-        placeholder="confirm password"
-        value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-      />
-    </div>
-    <button type="submit" class="btn btn-primary btn-block">
-      CREATE ACCOUNT
-    </button>
-  </form>
-  <p class="lead mt-4">Already have an account? <a href="/users/login">Sign in</a></p>
+
+
+
+<div class="register-form-container container">
+
+    <form class="login-form" action="/users/register" method="POST">
+      <div class="form-group login-group">
+        <label class="text-light mt-4"  for="name">Name</label>
+        <input
+          type="name"
+          id="name"
+          name="name"
+          class="form-control login-entry"
+          placeholder="name"
+          value="<%= typeof name != 'undefined' ? name : '' %>"
+        />
+      </div>
+      <div class="form-group login-group">
+        <label class="text-light mt-4"  for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control login-entry"
+          placeholder="email"
+          value="<%= typeof email != 'undefined' ? email : '' %>"
+        />
+      </div>
+      <div class="form-group login-group">
+        <label class="text-light mt-4"  for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control login-entry"
+          placeholder="new password"
+          value="<%= typeof password != 'undefined' ? password : '' %>"
+        />
+      </div>
+      <div class="form-group login-group">
+        <label class="text-light mt-4"  for="password2">Confirm Password</label>
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          class="form-control login-entry"
+          placeholder="confirm password"
+          value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block mt-4 login-btn">
+        CREATE ACCOUNT
+      </button>
+      <p class="lead mt-4 text-light register">Already have an account? <a href="/users/login">Sign in</a></p>
+    </form>
+  
+    <img class="astronaut" src="/images/1979-removebg-preview.png" alt="astronaut logo">
+
+</div>
+
 
   <%- include('../partials/footer.ejs') %>
