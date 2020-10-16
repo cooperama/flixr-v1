@@ -3,9 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get('/recommendations', async (req, res) => {
-    console.log('req.query object: ', req.query);
-    // Test Data
-    // We're making a call to request data from discover/movie
+    // making a call to request data from discover/movie
     try {
         let response = await axios.get('https://api.themoviedb.org/3/discover/movie', {
             params: { 
@@ -39,12 +37,11 @@ router.get('/recommendations', async (req, res) => {
         const context = {
             moviesList: chosenMovies,
         }
-        console.log(chosenMovies)
-        console.log(response.data.total_results);
         res.render('movies/recommendations', context);
     }
     catch(err) {
         console.log(err.message);
+        res.render('404');
     }
 })
 

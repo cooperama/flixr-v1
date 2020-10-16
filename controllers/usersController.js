@@ -8,10 +8,10 @@ const User = require('../models/User');
 const { forwardAuthenticated } = require('../config/auth');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('users/login')); //
+router.get('/login', forwardAuthenticated, (req, res) => res.render('users/login'));
 
 // Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('users/register')); //
+router.get('/register', forwardAuthenticated, (req, res) => res.render('users/register'));
 
 // Register
 router.post('/register', (req, res) => {
