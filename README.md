@@ -1,7 +1,6 @@
 # Flixr 
 
 Flixr is a movie search engine powered by user responses to a simple multiple-choice quizlet.
-Flixr makes use of [The Movie Database API](https://developers.themoviedb.org/4/getting-started/authorization) to create movie playlists for its users by making api calls to retrieve movies matching the criteria built-up through our quizlet, and returning movies and building playlists.
 
 ## Index:
 
@@ -11,164 +10,84 @@ Flixr makes use of [The Movie Database API](https://developers.themoviedb.org/4/
 - [Data Models](#data-models)
 - [Milestones](#milestones)
 
-## Technologies in play
+## Scope
 
-- ReactJs
-  - axios
-  - bootstrap
-  - router-dom
+Our objective was to create an app that makes use of [The Movie Database API](https://developers.themoviedb.org/4/getting-started/authorization) to find movies for its users according to their preferences at the moment and allow the user to build and edit their playlist, while also being able to see the activity of other users on their dashboard.
+
+##### Technologies Used
+
 - NodeJs
-  - bcrypt
-  - body parser
-  - cors
-  - dotenv
-  - express/sessions
-  - mongoDB
-  - mongoose
+- bcrypt
+- body parser
+- passport
+- dotenv
+- express/sessions
+- mongoDB
+- mongoose
+- axios
+- bootstrap
 
 ## User Stories
 
-A Gizmo user is anyone who wants to buy or sell a good, it can be used or new.
-
-#### Non-authenticated Users can:
-
-- View landing page
-- View all items for sale
-- Filter/search items for sale\*
-- Sign Up to Gizmo
-- Log in their Gizmo account
-
-#### Authenticated users can
-
-- View landing page
-- View all items for sale
-- Filter/search items for sale\*
-- View their profile page
-- View their orders
-- View items they sell
-- Create posts for selling items (with image\*)
-- Delete posts for items they sell
-- Edit posts for items they sell
-- Leave reviews for items they have bought\*
-- Update their profile image\*
+- New users can register and log in once they reach the landing page.
+- Users can view their playlists on their dashboard, as well as the 5 most recent playlists made by all users of Flixr.
+- Users can create playlists by taking a short, 10-question quizlet, designed to illicit a different response on each taking of the quiz. This is to find movies that best match the mood of the user at that moment in time.
+- Once their movies have been selected, they can review their playlist and give it a name and an optional description.
+- Once the playlists have been made, they can be viewed from the user's dashboard and edited or deleted.
 
 ## Wireframes
 
-### Landing
+### Log In / Register
 
-Users will see a slogan, some descriptive info of the site and the latest added items.
+On Flixr's landing page, the user may log in, or register if they don't have an account.
 
-![image](https://i.imgur.com/51qy8VK.png)
+![image](public/images/log in.png)
 
-### Profile
+![image](public/images/register.png)
 
-Users will see their profile information and a path to post and item or view the items they offer.
+### Dashboard
 
-![image](https://i.imgur.com/Rg5i3dJ.png)
+The user dashboard shows recent activity on the site, with the logged-in user's playlists displayed below.
 
-### Buy / Sell
+![image](public/images/dashboard.png)
 
-This will be the same view for Buy/Sell _with the exception_ that when users are viewing the items they sell, they will be able to see a button to edit or delete the post.
+### Start Quiz
 
-![image](https://i.imgur.com/ANPX2rC.png)
+To make a new playlist, the user takes a short quizlet.
 
-### Product Detail/ Edit product
+![image](public/images/start quiz.png)
 
-This view will allow users to closely examine a product they are interested in or edit one of the product they offer. Reviews for products are part of stretch goals.
+### Edit Page
 
-![image](https://i.imgur.com/OjTqG0p.png)
+Once the playlist has been made, it can be viewed, edited, or deleted.
 
-### Shopping Cart Flow
+![image](public/images/edit page.png)
 
-This will take our user through the payment portal through the cart, shipping and payment forms.
-
-View 1
-![image](https://i.imgur.com/oW4au4Z.png)
-
-View 2
-![image](https://i.imgur.com/WYZphwp.png)
-
-View 3
-![image](https://i.imgur.com/0mbyC5O.png)
 
 ## Data Models
 
-### Users
-
-- userId
-- name
-- lastName
-- email
-- password
-- img
-- address
-
-### Products
-
-- productId
-- userId
-- title
-- description
-- category
-- price
-- image
-- qty
-
-### Orders
-
-- orderId
-- userdId
-- [productIds]
-- shipInfo
-- payInfo
-- total
-- status
-
-### Reviews \*
-
-- \_id
-- userId
-- productId
-- rating
-- title
-- description
+![image](public/images/ERD.png)
 
 ## Milestones
 
-#### Sprint 1 - March 8
+#### Sprint 1 - October 9 - 12
 
-- Users can see a Nav/Footer through the page
-- Users can see a landing page
-- Users can sign-up or log-in
-- Users can see their profile page
-- Users can update their profile info
-- Users can add an img-url for their profile picture
+- Users can see a landing page with a description of Flixr
+- Users can see a log-in form
+- Users can see a registration form
+- Users can see and take a quiz to determine the type of movies to search for on TMDB
+- Users can see a playlist show page with their chosen movies
 
-#### Sprint 2 (Full CRUD & _MVP_) - March 9
+#### Sprint 2 - October 13
 
-- Users can create a post to sell
-- Users can add an img-url to their selling-items
-- Users can see "localhost:4000/shop" to see all items on sale
-- Users can see "localhost:4000/myshop" to see items they sell
-- Within "/myshop"
-  - Users can delete their posts
-  - Users can edit their posts
+- Users can see an edit and delete button on their show page
+- Users can see an edit page to update their playlist
 
-#### Sprint 3 - March 10
+#### Sprint 3 - October 14
 
-- Users can add items to their shopping cart
-- Users can see the total amount to pay
-- Users can input shipping info
-- Users can input billing info
-- Users can create an order
-- Users can view their orders in "/myorders"
+- Users can see a dashboard of their playlists
+- Users can see the recent activity of other users
 
-#### Sprint 4 / Bonuses - March 11
+#### Sprint 4 - October 15
 
-- Users can search/filter "/shop"
-- Users can upload their own profile picture
-- Users can upload their own product picture
-- Stripe Payment integrations
-- Users can create reviews
-- Users receive purchase notifications
-- Users can msg the seller about products
+- Users can see their playlists displayed in a visually appealing way
