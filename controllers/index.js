@@ -10,24 +10,28 @@ const moment = require('moment');
 router.get('/', forwardAuthenticated, (req, res) => res.render('users/login'));
 
 
-// Dashboard
-// Playlist Index Page
+// Dashboard -- Playlist Index Page
 router.get('/dashboard', ensureAuthenticated, async (req, res) => {
-  let recentPlaylists = await db.Playlist.find().sort({createdAt: -1}).limit(5).populate('user', "-password");
-  console.log(recentPlaylists)
-  db.Playlist.find({user: req.user._id}, (err, allPlaylists) => {
-    if (err) {
-      res.render('404');
-      return console.log(err);
-    }
-    const context = {
-        userPlaylists: allPlaylists,
-        user: req.user,
-        moment,
-        recentPlaylists
-    };
-    res.render('dashboard', context)
-  })
+  try {
+    let recentPlaylists = await db.Playlist.find().sort({createdAt: -1}).limit(5).populate('user', "-password");
+    db.Playlist.find({user: req.user._id}, (err, allPlaylists) => {
+      if (err) {
+        res.render('404');
+        return console.log(err);
+      }
+      const context = {
+          userPlaylists: allPlaylists,
+          user: req.user,
+          moment,
+          recentPlaylists
+      };
+      res.render('dashboard', context)
+    })
+  }
+  catch(err) {
+    console.log(err)
+    res.render('404');
+  }
 })
 
 

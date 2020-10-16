@@ -410,6 +410,7 @@ function generateQuestionnaire() {
   const indices = [];
   const questionsArr = [];
 
+  // get 10 unique and random questions
   for (let i = 0; i < 10; i++) {
     let index = randomIndexGenerator(comparisonOptions);
     while (indices.includes(index)) {
@@ -424,6 +425,7 @@ function generateQuestionnaire() {
     const questionEl = document.createElement('div')
     questionEl.classList.add('options-div');
 
+    // create buttons containing the comparison options
     options.forEach((option, i) => {
       const choice = document.createElement('button')
       choice.classList.add("btn", "btn-outline-primary", "mr-3")
@@ -443,7 +445,7 @@ function incrementGenre(choice) {
 }
 
 function getTopGenres(genreCountObj) {
-  // I know this is WAC af but let's dry it up later
+  // create arrays to merge genres later
   let paramString = [];
   let paramString2 = [];
   let paramString3 = [];
@@ -453,14 +455,19 @@ function getTopGenres(genreCountObj) {
   for (genre in genreCountObj) {
     sortedGenres.push([genre, genreCountObj[genre]]);
   }
+  // sort nested array by second item in inner arrays
   sortedGenres.sort((a, b) => b[1] - a[1]);
 
+  // mixing up genres
   paramString.push(sortedGenres[0][0], sortedGenres[1][0])
   paramString2.push(sortedGenres[2][0], sortedGenres[1][0])
   paramString3.push(sortedGenres[2][0], sortedGenres[0][0])
 
   // add top genres into value of input for req.query
-  const genreParams = paramString.join(',').concat('|').concat(paramString2.join(',')).concat('|').concat(paramString3.join(','))
+  const genreParams = paramString.join(',').concat('|')
+              .concat(paramString2.join(',')).concat('|')
+              .concat(paramString3.join(','))
+
   const genreInput = document.getElementById('genre_ids')
   genreInput.setAttribute('value', genreParams)
 }
@@ -585,15 +592,14 @@ if (startQuizBtn) {
 
 if (quizletEl) {
   quizletEl.addEventListener('click', (e) => {
+    // get user choice, user helper functions to increment counter objects
     const userChoice = e.target.innerText;
-    console.log('chosen option: ', userChoice);
     if (genreIncrementCount.hasOwnProperty(userChoice)) {
       incrementGenre(userChoice);
-      console.log('------------------')
-      console.log(genreCount)
     }
     addQueryParams(userChoice);
 
+    // on the last question, evaluate parameters to make api call
     if (questionIndex === questionsArr.length - 1) {
       getTopGenres(genreCount)
 
@@ -664,6 +670,7 @@ if (movieCarousel) {
         document.getElementById('movieIdString').setAttribute('value', movieIdStrings);
         // add movieID to playlist array
         moviePlaylist.push(imgNode.alt);
+        // create elements for movie review carousel
         const movieSpan = document.createElement('span')
         movieSpan.setAttribute("style", "--i:"+`${styleNumber}`)
         const addedMovie = document.createElement('img')
