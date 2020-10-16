@@ -583,7 +583,6 @@ let questionIndex = 0;
 
 if (startQuizBtn) {
   startQuizBtn.addEventListener('click', () => {
-    console.log('start button clicked')
     questionsArr = generateQuestionnaire();
     quizletEl.appendChild(questionsArr[questionIndex]);
     startQuizBtn.remove();
