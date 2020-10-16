@@ -1,6 +1,7 @@
 # Flixr 
 
 Flixr is a movie search engine powered by user responses to a simple multiple-choice quizlet.
+Flixr makes use of [The Movie Database API](https://developers.themoviedb.org/4/getting-started/authorization) to create movie playlists for its users by making api calls to retrieve movies matching the criteria built-up through our quizlet, and returning movies and building playlists.
 
 ## Index:
 
@@ -10,11 +11,7 @@ Flixr is a movie search engine powered by user responses to a simple multiple-ch
 - [Data Models](#data-models)
 - [Milestones](#milestones)
 
-## Scope
-
-Flixr makes use of The Movie Database API
-
-##### Technologies in play
+## Technologies in play
 
 - ReactJs
   - axios
