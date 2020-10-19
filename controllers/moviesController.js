@@ -20,8 +20,13 @@ router.get('/recommendations', async (req, res) => {
                 include_adult: req.query.include_adult,
             }
         })
-        // get first 50 results, shuffle them, send them as context
-        const movies = response.data.results.slice(0, 50).filter(movie => {
+        // // get first 50 results, shuffle them, send them as context
+        // const movies = response.data.results.slice(0, 50).filter(movie => {
+        //     if (movie.poster_path) return movie;
+        // });
+        console.log(response.data.results)
+        console.log(response.data.results.length)
+        const movies = response.data.results.filter(movie => {
             if (movie.poster_path) return movie;
         });
         const selectedIndices = [];

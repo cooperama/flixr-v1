@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 var db = require('./config/keys').mongoURI;
 
 // ---------------------- Connect to Mongo
-const connectionString = 'mongodb://localhost:27017/flixr';
+const connectionString = 'mongodb://localhost:27017/flixr-io';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
@@ -58,7 +58,7 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
-// app.use(express.static('public'));
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));

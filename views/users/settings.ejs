@@ -1,45 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap Styling -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="/css/styles.css">
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat&display=swap" rel="stylesheet">
-  <!-- Materialize Icons -->
-  <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
-  <!-- Bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <!-- Main JS -->
-  <script src="/js/app.js" defer></script>
-  
-  <title>FLIXR</title>
-</head>
-<body>
-    <nav class="navbar navbar-dark bg-black navbar-expand fixed-top">
-        <a class="navbar-brand text-light" href="/dashboard">FLIXR</a>
-        <ul class="navbar-nav ml-auto"></ul>
-    </nav>
-<div class="container-fluid px-0 flex-grow-1">
-    <div class="row no-gutters flex-nowrap navbar-expand-lg">
-        <div class="col-xl-1 col-auto text-white sidebar bg-black min-vh-100">
-            <div class="row no-gutters flex-nowrap sticky-top sticky-top-side">
-                <div class="col-sm-12 text-center">
-                    <div class="sidenav">
-                        <a class="nav-link py-2" href="#navTop"><i class="ml-auto mdi mdi-home-outline icon-white"></i></a>
-                        <a class="nav-link py-2" href="/dashboard#sectionMyPlaylists"><i class="ml-auto mdi mdi-youtube-subscription icon-white"></i></a>
-                        <a class="nav-link py-2" href="/playlists/new"><i class="ml-auto mdi mdi-plus-circle icon-white"></i></a>
-                        <a class="nav-link py-2" href="./users/settings"><i class="ml-auto mdi mdi-cog-outline icon-white"></i></a>
-                        <a class="nav-link py-2" href="../users/logout"><i class="ml-auto mdi mdi-logout-variant icon-white"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<%- include('../partials/header') %> 
+
+    <!-- Main JS -->
+    <!-- <script src="/js/app.js" defer></script>
+    <script src="/js/playlistShow.js" defer></script>
+    <script src="/js/editHelper.js" defer></script> -->
+
+<%- include('../partials/navbar')  %> 
+
+
+
+
+
 <section class="row min-vh-100 pt-5" id="sectionMyPlaylists">
   <div class="col pt-4 d-flex flex-column">
       <div class="rounded flex-fill p-4">
@@ -48,26 +19,53 @@
                   <!-- tabs -->
                   <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item"><a href="#tab1" class="nav-link bg-transparent text-white text-uppercase active" data-toggle="tab" data-target="#tab1" role="tab">User Details</a></li>
-                      <li class="nav-item"><a href="#tab2" class="nav-link bg-transparent text-white text-uppercase active" data-toggle="tab" data-target="#tab2" role="tab">Notifications</a></li>
-                      <li class="nav-item"><a href="#tab3" class="nav-link bg-transparent text-white text-uppercase active" data-toggle="tab" data-target="#tab3" role="tab">Privacy</a></li>
+                      <li class="nav-item"><a href="#tab2" class="nav-link bg-transparent text-white text-uppercase" data-toggle="tab" data-target="#tab2" role="tab">Notifications</a></li>
+                      <li class="nav-item"><a href="#tab3" class="nav-link bg-transparent text-white text-uppercase" data-toggle="tab" data-target="#tab3" role="tab">Privacy</a></li>
                   </ul>
                   <div class="tab-content py-4">
                       <div class="tab-pane active" id="tab1" role="tabpanel">
                         <div class="card bg-transparent shadow-sm mb-3">
                           <div class="card-body">
                             <div class="register-form-container container">
-                              <div class="photo-div">
-                                <img class="profile-photo astronaut" src="/images/1979-removebg-preview.png" alt="profile photo">
+
+                              <div class="photo-div container">
+                                <div class="row">
+                                  
+                <div class="form-group login-group">
+        
+                  <img class="profile-photo astronaut" src="/images/1979-removebg-preview.png" alt="profile photo">
+        
+                  <div class="changeImage hide-content">
+                    <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
+                        <input class="btn btn-outline-primary btn-block mt-4" type="file" name="fileToUpload" id="fileToUpload" onchange="setImageSrc(event); toggleImageForm()" />
+                        <input class="btn btn-outline-primary btn-block mt-4" type="submit" value="Upload Image">
+                    </form>
+                        <button class="btn btn-outline-primary btn-block mt-4" onclick="toggleImageForm()">Cancel</button>
+                  </div>
+        
+                  <button onclick="toggleImageForm()" class="btn btn-outline-primary btn-block mt-4 imgBtn">
+                    Change Image
+                  </button>
+        
+                </div>
+                                </div>
+                                <div class="row">
+                                  <span class="text-light small">Joined: <%= moment(user.date).format("MMM Do, YYYY") %></span>
+                                </div>
                               </div>
-                              <form action="/users/register" method="POST">
+        
+
+                              <!-- edit user!!!! -->
+                              <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
+                                <input type="hidden" name="image" value="">
                                 <div class="form-group login-group">
                                   <input
-                                    type="username"
-                                    id="username"
-                                    name="username"
+                                    type="name"
+                                    id="name"
+                                    name="name"
                                     class="form-control login-entry text-light mt-4"
                                     placeholder="username"
-                                    value="<%= typeof username != 'undefined' ? username : '' %>"
+                                    value="<%= user.name %> "
                                   />
                                 </div>
                                 <div class="form-group login-group">
@@ -77,17 +75,7 @@
                                     name="email"
                                     class="form-control login-entry text-light mt-4"
                                     placeholder="email"
-                                    value="<%= typeof email != 'undefined' ? email : '' %>"
-                                  />
-                                </div>
-                                <div class="form-group login-group">
-                                  <input
-                                    type="role"
-                                    id="role"
-                                    name="role"
-                                    class="form-control login-entry text-light mt-4"
-                                    placeholder="role"
-                                    value="<%= typeof role != 'undefined' ? role : '' %>"
+                                    value="<%= user.email %>"
                                   />
                                 </div>
                                 <button type="submit" class="btn btn-outline-primary btn-block mt-4 login-btn">
@@ -102,22 +90,22 @@
                   <!-- /tab-content -->
                 <div class="tab-content py-4">
                     <div class="tab-pane" id="tab2" role="tabpanel">
+                      <div class="row">
                     <!-- <div class="tab-pane active" id="tab2" role="tabpanel"> -->
                       <div class="card bg-transparent shadow-sm mb-3">
                         <div class="card-body">
                           <h5 class="card-title">Coming Soon!</h5>
                         </div>
                       </div>
-                    </div>
-                </div>
                 <!-- /tab-content -->
                 <div class="tab-content py-4">
                   <div class="tab-pane" id="tab3" role="tabpanel">
+                    <div class="row">
                   <!-- <div class="tab-pane active" id="tab3" role="tabpanel"> -->
                     <div class="card bg-transparent shadow-sm mb-3">
                       <div class="card-body">
                         <div class="register-form-container container">
-                          <form action="/users/register" method="POST">
+                          <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
                             <div class="form-group login-group">
                               <input
                                 type="current-password"
@@ -159,22 +147,16 @@
                       </div>
                       </div>
 
-
+                      </div>
                     </div>
                 </div>
               <!-- /tab-content -->
               </div>
           </div>
+                </div>
+              </div> 
+          </div>
       </div>
-  </div>
+  </div> 
 </section>
-
-
-
-
-
-
-
-
-
   <%- include('../partials/footer.ejs') %>

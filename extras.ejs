@@ -1,0 +1,19 @@
+<!-- settings.ejs --> 
+  <!-- line 62 -->
+<div class="form-group login-group">
+
+  <img class="profile-photo astronaut" src="/images/1979-removebg-preview.png" alt="profile photo">
+
+  <div class="changeImage hide-content">
+    <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
+        <input class="btn btn-outline-primary btn-block mt-4" type="file" name="fileToUpload" id="fileToUpload" onchange="setImageSrc(event); toggleImageForm()" />
+        <input class="btn btn-outline-primary btn-block mt-4" type="submit" value="Upload Image">
+    </form>
+        <button class="btn btn-outline-primary btn-block mt-4" onclick="toggleImageForm()">Cancel</button>
+  </div>
+
+  <button onclick="toggleImageForm()" class="btn btn-outline-primary btn-block mt-4 imgBtn">
+    Change Image
+  </button>
+
+</div>

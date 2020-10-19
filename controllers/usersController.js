@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const moment = require('moment');
 
 // Load the user model
 const User = require('../models/User');
-const { forwardAuthenticated } = require('../config/auth');
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+const { db } = require('../models/User');
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('users/login'));
@@ -96,15 +98,26 @@ router.get('/logout', (req, res) => {
 });
 
 // Settings Page
-router.get('/settings', forwardAuthenticated, (req, res) => {
-  // console.log(req.user._id);
-  console.log(req);
-  console.log('***************')
+router.get('/settings', ensureAuthenticated, (req, res) => {
   const context = {
-    user: req.user
+    user: req.user,
+    moment
   }
   res.render('users/settings', context)
 });
+
+// Edit User Page
+router.put('/:userId', ensureAuthenticated, (req, res) => {
+  console.log(req.params)
+  db.User.findById(
+    req.params.userId,
+    req.body,
+    {new: true},
+    (err, foundUser) => {
+      if (err) return console.log(err);
+      res.redirect('/users/settings');
+  })
+})
 
 
 module.exports = router;

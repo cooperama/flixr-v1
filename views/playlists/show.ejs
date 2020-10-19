@@ -1,50 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap Styling -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="/css/styles.css">
-    <!-- Materialize Icons -->
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
-    <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+<%- include('../partials/header') %> 
+
     <!-- Main JS -->
-    <script src="/js/app.js" defer></script>
-    <script src="/js/editHelper.js" defer></script>
     <script src="/js/playlistShow.js" defer></script>
 
-    <title>FLIXR</title>
-  </head>
-<body>
-  <nav class="navbar navbar-dark bg-black navbar-expand fixed-top">
-    <a class="navbar-brand text-light" href="../dashboard">FLIXR</a>
-    <ul class="navbar-nav ml-auto">
-    </ul>
-  </nav>
-  <div class="container-fluid px-0 flex-grow-1">
-    <div class="row no-gutters flex-nowrap navbar-expand-lg">
-        <div class="col-xl-1 col-auto text-white sidebar bg-black min-vh-100">
-            <div class="row no-gutters flex-nowrap sticky-top sticky-top-side">
-                <div class="col-sm-12 text-center">
-                    <div class="sidenav">
-                      <a class="nav-link py-2" href="../dashboard"><i class="ml-auto mdi mdi-home-outline icon-white"></i></a>
-                      <a class="nav-link py-2" href="../dashboard#sectionMyPlaylists"><i class="ml-auto mdi mdi-youtube-subscription icon-white"></i></a>
-                      <a class="nav-link py-2" href="/playlists/new"><i class="ml-auto mdi mdi-plus-circle icon-white"></i></a>
-                      <a class="nav-link py-2" href="#"><i class="ml-auto mdi mdi-cog-outline icon-white"></i></a>
+<%- include('../partials/navbar')  %> 
 
-                      <a class="nav-link py-2" href="../../users/logout"><i class="ml-auto mdi mdi-logout-variant icon-white"></i></a>
 
-                    </div>
-                </div>
-            </div>
-        </div>
 <div class= "col-lg-9 col-auto text-white min-vh-100">
   <div class="show-gallery-container">
     <ul class="playlist-gallery">
@@ -73,9 +34,10 @@
 </div>
 </div> <!-- Page's Container Ends -->
 <!-- Playlist Description Column -->
-<div class="col-xl-2 text-white min-vh-100 parent-pli-div">
+<div class="col-sm-2 text-white min-vh-100 parent-pli-div">
   <button id="playlist-info-btn" class="btn btn-danger" onclick="toggleDiv()">Playlist Info</button>
-<div class= "col text-white min-vh-100 pi-info-col" id="pi-info-div">
+  <div class= "col text-white min-vh-100 pi-info-col" id="pi-info-div">
+    <p><small class="text-center"><%= moment(playlist.createdAt).format("MMM Do, YYYY") %></small></p>
   <div class= "row-lg-2 d-flex flex-row text-center justify-content-center">
     <div id="playlist-info" class= "col">
     <h1 class="show-playlist-h1"><%= playlist.title %></h1>

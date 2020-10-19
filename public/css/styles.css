@@ -129,6 +129,7 @@ dl, ol, ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .astronaut {
@@ -182,8 +183,10 @@ dl, ol, ul {
 
 .navbar-brand {
   font-size: 1.5rem !important;
-  margin-right: 0 !important;
+  /* margin-right: 0 !important; */
   text-align: center !important;
+  margin: auto;
+  width: 100%;
 }
 
 .fixed-top {
@@ -301,6 +304,17 @@ main.col.px-4.px-lg-5.pt-5 {
 
 textarea {
   width: 330px;
+}
+
+.options-card {
+  width: 400px;
+}
+
+.quiz-card-body {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*=================================*/

@@ -569,6 +569,23 @@ async function confirmAdd() {
   movieAlertH2.innerText = 'click a movie to add it to your playlist';
 }
 
+
+// Settings functions
+function toggleImageForm() {
+  document.querySelector('.changeImage').classList.toggle('hide-content');
+  document.querySelector('.imgBtn').classList.toggle('hide-content')
+}
+
+function setImageSrc(event) {
+  // document.getElementById("s-prevent").addEventListener("click", function(event){
+  //   event.preventDefault()
+  // });
+  const userImageEl = document.querySelector('.profile-photo');
+  userImageEl.setAttribute('src', `/images/${event.target.files[0].name}`)
+}
+
+
+
 // -------------- Event Listeners
 const quizletEl = document.querySelector('.quizletForm');
 const startQuizBtn = document.querySelector('.start-quiz');
@@ -682,12 +699,3 @@ if (movieCarousel) {
   }
 )}
 
-// Hide/Show Element function
-function toggleDiv() {
-  var x = document.getElementById("pi-info-div");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-}
