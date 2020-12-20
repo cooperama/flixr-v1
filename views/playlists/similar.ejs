@@ -1,0 +1,64 @@
+<%- include('../partials/header') %> 
+  <!-- <script src="/js/app.js" defer></script> -->
+  <script src="/js/playlistShow.js" defer></script>
+<%- include('../partials/navbar')  %> 
+<div class= "col-lg-9 col-auto text-white min-vh-100">
+  <div class="show-gallery-container">
+    <ul class="playlist-gallery">
+      <% for( let i = 0; i < similarMovies.length; i++ ) { %>
+      <li>
+        <div class="flip">
+          <div class="front-side" style="background-image: url('http://image.tmdb.org/t/p/w500<%= similarMovies[i].poster_path %>');" alt="<%= similarMovies[i].poster_path %>"></div>   
+          <div class="back-side">
+            <a href="#">
+              <div class="playlist-content">
+                <div class="movie-loader"></div>
+                <div class="text">
+                  <h3><%= similarMovies[i].title %></h3>
+                  <% if (similarMovies[i].tagline) { %> 
+                    <p><%= similarMovies[i].tagline %></p>
+                  <% } %> 
+                    <p><%= similarMovies[i].overview %></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </li>
+    <% } %> 
+  </div>
+</div>
+<div class="col-sm-2 text-white min-vh-100 parent-pli-div">
+  <div class="btn-div">
+    <a class="btn btn-outline-danger" href="/playlists/<%= playlist._id %>/similar">Generate New Playlist</a>
+    <button class="btn btn-outline-success" onclick="toggleDiv()">Add Playlist</button>
+  </div>
+  <div class= "col text-white min-vh-100 pi-info-col" id="pi-info-div">
+    <div class= "row-lg-2 d-flex flex-row text-center justify-content-center pt-5">
+      <div id="playlist-info" class= "col">
+        <form action="/playlists" method="POST" class="similar-playlist-form">
+          <div class="form-group">
+            <input 
+              type="text" 
+              id="playlist-title" 
+              class="py-2 text-center"
+              name="title" 
+              placeholder="your playlist name"
+              required
+              />
+            </div>
+          <div class="form-group">
+            <textarea 
+              id="playlist-description" 
+              class="py-1 text-center"
+              name="description" 
+              placeholder="enter playlist description"></textarea>
+          </div>
+          <input type="hidden" name="movieIdString" value="<%= movieString %>" />
+          <button class="create-playlist btn btn-outline-primary rounded-pill mt-2">confirm add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer.ejs') %>

@@ -1,29 +1,32 @@
 <%- include('../partials/header') %> 
-
     <!-- Main JS -->
     <script src="/js/playlistShow.js" defer></script>
-
 <%- include('../partials/navbar')  %> 
-
-
 <div class= "col-lg-9 col-auto text-white min-vh-100">
   <div class="show-gallery-container">
     <ul class="playlist-gallery">
-      <% for( let i = 0; i < movies.length; i++ ) { %>
+      <% for( let i = 0; i < playlist.movieIDs.length; i++ ) { %>
+        <% console.log('playlist: ', playlist) %> 
+        <% console.log('playlist.movieIDS: ', playlist.movieIDs[i]) %> 
       <li>
         <div class="flip">
-          <div class="front-side" style="background-image: url('http://image.tmdb.org/t/p/w500<%= movies[i].poster_path %>');" alt="<%= movies[i].poster_path %>">
-          </div>   
+          <div class="front-side" style="background-image: url('http://image.tmdb.org/t/p/w500<%= playlist.movieIDs[i].posterPath %>');" alt="<%= playlist.movieIDs[i].title %>"></div>   
           <div class="back-side">
             <a href="#">
               <div class="playlist-content">
                 <div class="movie-loader"></div>
                 <div class="text">
-                  <h3><%= movies[i].title %></h3>
-                  <% if (movies[i].tagline) { %> 
-                    <p><%= movies[i].tagline %></p>
+                  <h3><%= playlist.movieIDs[i].title %></h3>
+                  <% if (playlist.movieIDs[i].tagline) { %> 
+                    <p><%= playlist.movieIDs[i].tagline %></p>
                   <% } %> 
-                    <p><%= movies[i].overview %></p>
+                  <p>
+                    <% playlist.movieIDs[i].genres.forEach(genre => { %>
+                      <small><%= genre %></small>
+                    <% }) %>
+                  </p>
+                  <p><small><%= playlist.movieIDs[i].runtime %> min</small> | <small><%= playlist.movieIDs[i].voteAverage %>/10</small></p>
+                    <p><%= playlist.movieIDs[i].overview %></p>
                 </div>
               </div>
             </a>
@@ -31,31 +34,34 @@
         </div>
       </li>
     <% } %> 
+  </div>
 </div>
-</div> <!-- Page's Container Ends -->
-<!-- Playlist Description Column -->
 <div class="col-sm-2 text-white min-vh-100 parent-pli-div">
-  <button id="playlist-info-btn" class="btn btn-danger" onclick="toggleDiv()">Playlist Info</button>
+  <div class="btn-div">
+    <button id="playlist-info-btn" class="btn btn-primary" onclick="toggleDiv()">Playlist Info</button>
+  </div>
   <div class= "col text-white min-vh-100 pi-info-col" id="pi-info-div">
-    <p><small class="text-center"><%= moment(playlist.createdAt).format("MMM Do, YYYY") %></small></p>
-  <div class= "row-lg-2 d-flex flex-row text-center justify-content-center">
-    <div id="playlist-info" class= "col">
-    <h1 class="show-playlist-h1"><%= playlist.title %></h1>
-    <% if (playlist.description) { %> 
-      <p><%= playlist.description %></p>
-    <% } %> 
-    <!-- Edit Buttons -->
-
-    <button id="delete-button" class="btn btn-outline-primary" onclick="confirmDelete()">delete playlist</button>
-    <form id="confirm-delete-button" class="hide-content" action="/playlists/<%= playlist._id %>/?_method=DELETE" method="POST">
-      <button type="submit" class="btn btn-warning">confirm delete</button>
-    </form>
-    <form action="/playlists/<%= playlist._id %>/edit" method="GET">
-      <button type="submit" class="btn btn-outline-secondary">edit playlist</button>
-    </form>
+    <p class="created-time"><small class="text-center"><%= moment(playlist.createdAt).format("MMM Do, YYYY") %></small></p>
+    <div class= "row-lg-2 d-flex flex-row text-center justify-content-center">
+      <div id="playlist-info" class= "col">
+        <h1 class="show-playlist-h1"><%= playlist.title %></h1>
+        <% if (playlist.description) { %> 
+        <p><%= playlist.description %></p>
+        <% } %> 
+        <div class="btn-div">
+          <button id="delete-button" class="btn btn-outline-danger" onclick="confirmDelete()">delete playlist</button>
+          <form id="confirm-delete-button" class="hide-content" action="/playlists/<%= playlist._id %>/?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-outline-danger">confirm delete</button>
+          </form>
+          <form action="/playlists/<%= playlist._id %>/edit" method="GET">
+            <button type="submit" class="btn btn-outline-secondary">edit playlist</button>
+          </form>
+          <form action="/playlists/<%= playlist._id %>/similar" method="GET">
+            <button type="submit" id="get-similar-movies" class="btn btn-outline-secondary">similar playlist</button>
+          </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
-
 </div>
 <%- include('../partials/footer.ejs') %>

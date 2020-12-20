@@ -1,43 +1,34 @@
 <%- include('../partials/header') %> 
-
     <!-- Main JS -->
     <script src="/js/app.js" defer></script>
-
-    <%- include('../partials/navbar')  %> 
-
-
-        <main class="col px-4 px-lg-5 pt-5">
-            <section class="row pt-5" id="sectionQuizlet">
-                <div class="col pt-4 d-flex flex-column justify-content-center quiz-desc">
-                    <h3 class="text-light">Choose the option you're vibing with in this moment.</h3>
-                    <div class="rounded flex-row d-flex justify-content-center align-self-center w-50 flex-fill p-4">
-                        <div class="card options-card text-light shadow-sm h-100">
-                            <div class="card-body">
-                              <form id="moviesForm" action="http://localhost:5000/movies/recommendations" method="GET">
-                                <div class="form-group col-xl-12 text-center">
+<%- include('../partials/navbar')  %> 
+    <main class="col px-4 px-lg-5 pt-5">
+        <section class="row pt-5" id="sectionQuizlet">
+            <div class="col pt-4 d-flex flex-column justify-content-center quiz-desc">
+                <h3 class="text-light">Choose the option you're vibing with in this moment.</h3>
+                <div class="rounded flex-row d-flex justify-content-center align-self-center w-50 flex-fill p-4">
+                    <div class="card options-card text-light shadow-sm h-100">
+                        <div class="card-body">
+                            <form id="moviesForm" action="/movies/recommendations" method="GET">
+                            <div class="form-group col-xl-12 text-center">
                                 <div class="quizletForm"></div>
                                 <button class="start-quiz btn btn-outline-primary rounded-pill mt-2">Start Quiz</button>
-                              
-                                <input type="hidden" name="vote_count_gte" id="vote_count_gte" value="100" />
-                                <input type="hidden" name="include_adult" id="include_adult" value="false" />
-                                <input type="hidden" name="genre_ids" id="genre_ids" />
-                                <input type="hidden" name="language" id="language" />
-                                <input type="hidden" name="vote_average_gte" id="vote_average_gte" />
-                                <input type="hidden" name="vote_average_lte" id="vote_average_lte" />
-                                <input type="hidden" name="release_date_gte" id="release_date_gte" />
-                                <input type="hidden" name="release_date_lte" id="release_date_lte" />
-                                <input type="hidden" name="with_runtime_gte" id="with_runtime_gte" />
-                                <input type="hidden" name="with_runtime_lte" id="with_runtime_lte" />
-                                
-                              </div>
-                              </form>
-                            </div>
+                                    <input type="hidden" name="vote_count_gte" id="vote_count_gte" value="100" />
+                                    <input type="hidden" name="include_adult" id="include_adult" value="false" />
+                                    <input type="hidden" name="genre_ids" id="genre_ids" />
+                                    <input type="hidden" name="language" id="language" />
+                                    <input type="hidden" name="vote_average_gte" id="vote_average_gte" />
+                                    <input type="hidden" name="vote_average_lte" id="vote_average_lte" />
+                                    <input type="hidden" name="release_date_gte" id="release_date_gte" />
+                                    <input type="hidden" name="release_date_lte" id="release_date_lte" />
+                                    <input type="hidden" name="with_runtime_gte" id="with_runtime_gte" />
+                                    <input type="hidden" name="with_runtime_lte" id="with_runtime_lte" />
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!--Section ends for my playlists-->
-        </main>
-            <!--Footer can go here -->
-
+            </div>
+        </section>
+    </main>
 <%- include('../partials/footer.ejs') %>

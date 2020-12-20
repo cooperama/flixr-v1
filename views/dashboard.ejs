@@ -1,7 +1,5 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/navbar')  %> 
-
-
         <main class="col px-4 px-lg-5">
             <div class="row">
                 <div class="col-xl-12 order-xl-0 order-md-1 pt-3 pb-4">
@@ -19,73 +17,69 @@
                         </div>
                         <div id="contentSlider3" data-ride="carousel" data-interval="false" class="carousel slide my-auto pointer-event">
                             <div class="carousel-inner rounded-lg">
-
-                                    <% recentPlaylists.forEach((playlist, i) => { %>
-                                        <% if (i === 0) { %>
-                                <div class="carousel-item active">
+                                <% recentPlaylists.forEach((playlist, i) => { %>
+                                <% if (i === 0) { %>
+                                    <div class="carousel-item active">
                                 <% } else { %>
                                     <div class="carousel-item">
-                                    <% } %>
-                                    <div class="card bg-transparent border-0">
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-grow-1">
-                                                <div class="card-body text-left">
-                                                    <h4 class="mb-0 font-weight-light"><%= playlist.title %></h4>
-                                                    <span class="text-muted font-weight-normal"><%= playlist.user.name %></span>
-                                                    <p class="mt-1 text-truncate"><%= playlist.description %></p>
-                                                    <!-- needs different view.... -->
-                                                    <a href="/playlists/<%= playlist._id %>" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View Playlist</a></p>
+                                <% } %>
+                                        <div class="card bg-transparent border-0">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1">
+                                                    <div class="card-body text-left">
+                                                        <h4 class="mb-0 font-weight-light"><%= playlist.title %></h4>
+                                                        <span class="text-muted font-weight-normal"><%= playlist.user.name %> | <small class="mr-2"><%= moment(playlist.createdAt).format("dddd, MMM Do") %></small></span>
+                                                        <p class="mt-1 text-truncate"><%= playlist.description %></p>
+                                                        <a href="/playlists/<%= playlist._id %>" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View Playlist</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="movie-posters">
+                                            <!-- need to push movie objects into playlist~~ -->
+                                            <% playlist.movieIDs.forEach(movie => { %>
+                                             <img class="poster-thumbnail" src="http://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<% movie.title %>">
+                                            <% }) %>
+                                        </div>
                                     </div>
-                                </div>
                                 <% }) %>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- My Playlist Section-->
             <section class="row min-vh-100 pt-5" id="sectionMyPlaylists">
                 <div class="col pt-4 d-flex flex-column">
                     <div class="rounded flex-fill p-4">
                         <div class="card text-light shadow-sm h-100">
                             <div class="card-body">
-                                <!-- tabs -->
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item"><a href="#tab1" class="nav-link bg-transparent text-white text-uppercase active" data-toggle="tab" data-target="#tab1" role="tab">My Watchlist</a></li>
                                 </ul>
                                 <div class="tab-content py-4">
                                     <div class="tab-pane active" id="tab1" role="tabpanel">
-
-<% userPlaylists.forEach(playlist => { %>
-    <div class="card bg-transparent shadow-sm mb-3">
-        <div class="card-body">
-            <span class="float-right text-light small"><%= moment(playlist.createdAt).format("dddd, MMM Do, YYYY") %></span>
-            <h5 class="card-title"><%= playlist.title %></h5>
-            <% if (playlist.description) { %> 
-                <p class="card-text"><%= playlist.description %>
-                <% } else { %> 
-                <p class="card-text">
-            <% } %> 
-            <a href="/playlists/<%= playlist._id %>" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View Playlist</a></p>
-        </div>
-    </div>
-<% }) %>
-
+                                    <% userPlaylists.forEach(playlist => { %>
+                                        <div class="card bg-transparent shadow-sm mb-3">
+                                            <div class="card-body">
+                                                <span class="float-right text-light small"><%= moment(playlist.createdAt).format("dddd, MMM Do, YYYY") %></span>
+                                                <h5 class="card-title"><%= playlist.title %></h5>
+                                                <% if (playlist.description) { %> 
+                                                    <p class="card-text"><%= playlist.description %>
+                                                    <% } else { %> 
+                                                    <p class="card-text">
+                                                <% } %> 
+                                                <a href="/playlists/<%= playlist._id %>" class="btn btn-sm btn-outline-secondary align-bottom ml-3">View Playlist</a></p>
+                                            </div>
+                                        </div>
+                                    <% }) %>
                                     </div>
                                 </div>
-                                <!-- /tab-content -->
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!--Section ends for my playlists-->
-            <!--Footer can go here -->
         </main>
     </div>
 </div>
-
 <%- include('./partials/footer.ejs') %>

@@ -1,14 +1,9 @@
 <%- include('../partials/header') %> 
-
-
-<!-- Main JS -->
-    <script src="/js/app.js" defer></script>
-
-    <title>FLIXR</title>
+  <!-- Main JS -->
+  <script src="/js/app.js" defer></script>
+  <title>FLIXR</title>
   </head>
 <body>
-
-
 <div class="container-fluid movie-lp ml-5">
   <div class="row">
     <div class="col-8 app-desc">
@@ -21,40 +16,36 @@
       </div>
     </div>
     <div class="col-4 mt-5">
-      <!-- logo -->
       <div class="flixr-logo"> FLIXR </div>
-      <div class="row ml-5">
-        <form action="/users/login" method="POST" class="login-form">
-          <div class="form-group login-group">
-            <label class="text-light mt-4" for="email"></label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-control login-entry" 
-              placeholder="email"
-            />
-          </div>
-          <div class="form-group login-group">
-            <label class="text-light" for="password"></label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="form-control login-entry"
-              placeholder="password"
-            />
-          </div>
-          <button type="submit" class="btn btn-info btn-block mt-4 login-btn">LOG IN</button>
-          <p class="lead mt-4 text-light register">
-            Don't have an account? <a href="/users/register" class="sign-up">Sign up</a>
-          </p>
-        </form>
-      </div>
+        <div class="row ml-5">
+          <form action="/users/login" method="POST" class="login-form">
+            <div class="form-group login-group">
+              <label class="text-light mt-4" for="email"></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control login-entry" 
+                placeholder="email"
+              />
+            </div>
+            <div class="form-group login-group">
+              <label class="text-light" for="password"></label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control login-entry"
+                placeholder="password"
+              />
+            </div>
+            <button type="submit" class="btn btn-info btn-block mt-4 login-btn">LOG IN</button>
+            <p class="lead mt-4 text-light register">
+              Don't have an account? <a href="/users/register" class="sign-up">Sign up</a>
+            </p>
+          </form>
+        </div>
     </div>
   </div>
 </div>
-
-
-
-  <%- include('../partials/footer.ejs') %>
+<%- include('../partials/footer.ejs') %>

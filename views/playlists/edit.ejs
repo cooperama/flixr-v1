@@ -1,22 +1,13 @@
 <%- include('../partials/header') %> 
-
     <!-- Main JS -->
     <script src="/js/editHelper.js" defer></script>
-
 <%- include('../partials/navbar')  %> 
-
-
-
 <div class="edit-playlist-container">
-
-  
   <form id="edit-movies-form" action="/playlists/<%= playlist._id %>?_method=PUT" method="POST">
-    
     <div class="edit-pl-title-desc">
       <div class="form-group">
         <input type="text" id="title" name="title" value="<%= playlist.title %>">
       </div>
-    
       <div class="form-group">
         <textarea name="description" id="description" cols="30" rows="10"><%= playlist.description %></textarea>
       </div>
@@ -24,24 +15,15 @@
         <input type="hidden" id="movie-choices" name="movieChoices" />
         <input class="btn btn-outline-primary" type="submit" id="update-playlist" onclick="updatePlaylistMovies()" value="edit playlist" />
       </div>
-    
     </div>
-
- 
-      <div class="form-group edit-movies-div">
-        <% movies.forEach((movie, i) => { %>
-          <div class="selected-movie-div">
-      
-            <input type="checkbox" class="movie-id-checkbox" id="movie-<%= i %>" name="<%= playlist.movieIDs[i] %>" checked />
-            <label class="selected-movie-image" for="movie-<%= i %>"><img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<% movie.title %>"></label>
-      
-          </div>
-        <% }) %>
-        </div>
-   
-
-
-  
+    <div class="form-group edit-movies-div">
+      <% playlist.movieIDs.forEach((movie, i) => { %>
+      <div class="selected-movie-div">
+        <input type="checkbox" class="movie-id-checkbox" id="movie-<%= i %>" name="<%= movie._id %>" checked />
+        <label class="selected-movie-image" for="movie-<%= i %>"><img src="https://image.tmdb.org/t/p/w500<%= movie.posterPath %>" alt="<% movie.title %>"></label>
+      </div>
+      <% }) %>
+    </div>
   </form>
 </div>
 

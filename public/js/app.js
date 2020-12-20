@@ -697,5 +697,6 @@ if (movieCarousel) {
       }
     }
   }
-)}
+)
+}
 

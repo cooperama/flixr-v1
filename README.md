@@ -1,6 +1,6 @@
 # Flixr 
 
-Flixr is a movie search engine powered by user responses to a simple multiple-choice quizlet.
+[Flixr](http://flixr-io.herokuapp.com/) is a movie search engine powered by user responses to a simple multiple-choice quizlet.
 
 ## Index:
 

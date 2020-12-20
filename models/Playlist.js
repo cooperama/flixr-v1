@@ -13,7 +13,8 @@ const playlistSchema = new mongoose.Schema({
   },
   movieIdString: String,
   movieIDs: [{
-    type: String
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Movie',
   }]
 }, {timestamps: true});
 
